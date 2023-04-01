@@ -78,6 +78,11 @@ export const UpdateStudent = () => {
                                 variant="outlined"
                                 fullWidth
                                 value={student.name}
+                                InputProps={{
+                                    style: {
+                                        color: "whitesmoke"
+                                    }
+                                }}
                                 onChange={(event) => setStudent({ ...student, name: event.target.value })}
                             />
                             <TextField
@@ -87,6 +92,11 @@ export const UpdateStudent = () => {
                                 fullWidth
                                 value={student.cnp}
                                 sx={{ mb: 2, color: "whitesmoke" }}
+                                InputProps={{
+                                    style: {
+                                        color: "whitesmoke"
+                                    }
+                                }}
                                 onChange={(event) => setStudent({ ...student, cnp: Number(event.target.value) })}
                             />
                             <TextField
@@ -96,6 +106,11 @@ export const UpdateStudent = () => {
                                 fullWidth
                                 value={student.date_of_birth}
                                 sx={{ mb: 2, color: "whitesmoke" }}
+                                InputProps={{
+                                    style: {
+                                        color: "whitesmoke"
+                                    }
+                                }}
                                 onChange={(event) => setStudent({ ...student, date_of_birth: event.target.value })}
                             />
                             <TextField
@@ -105,6 +120,11 @@ export const UpdateStudent = () => {
                                 fullWidth
                                 value={student.country}
                                 sx={{ mb: 2, color: "whitesmoke" }}
+                                InputProps={{
+                                    style: {
+                                        color: "whitesmoke"
+                                    }
+                                }}
                                 onChange={(event) => setStudent({ ...student, country: event.target.value })}
                             />
                             <TextField
@@ -114,6 +134,11 @@ export const UpdateStudent = () => {
                                 fullWidth
                                 value={student.county}
                                 sx={{ mb: 2, color: "whitesmoke" }}
+                                InputProps={{
+                                    style: {
+                                        color: "whitesmoke"
+                                    }
+                                }}
                                 onChange={(event) => setStudent({ ...student, county: event.target.value })}
                             />
                             <TextField
@@ -123,6 +148,11 @@ export const UpdateStudent = () => {
                                 fullWidth
                                 value={student.city}
                                 sx={{ mb: 2, color: "whitesmoke" }}
+                                InputProps={{
+                                    style: {
+                                        color: "whitesmoke"
+                                    }
+                                }}
                                 onChange={(event) => setStudent({ ...student, city: event.target.value })}
                             />
                             <TextField
@@ -132,6 +162,11 @@ export const UpdateStudent = () => {
                                 fullWidth
                                 value={student.mail_address}
                                 sx={{ mb: 2, color: "whitesmoke" }}
+                                InputProps={{
+                                    style: {
+                                        color: "whitesmoke"
+                                    }
+                                }}
                                 onChange={(event) => setStudent({ ...student, mail_address: event.target.value })}
                             />
                             <TextField
@@ -141,6 +176,11 @@ export const UpdateStudent = () => {
                                 fullWidth
                                 value={student.phone_number}
                                 sx={{ mb: 2, color: "whitesmoke" }}
+                                InputProps={{
+                                    style: {
+                                        color: "whitesmoke"
+                                    }
+                                }}
                                 onChange={(event) => setStudent({ ...student, phone_number: event.target.value })}
                             />
                             <Button type="submit" sx={{ backgroundColor: '#242424', color: 'whitesmoke' }}>Update Student</Button>

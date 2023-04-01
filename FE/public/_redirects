@@ -1,3 +1,1 @@
 /api/* http://46.101.118.44/main/:splat 200!
-/home https://samy-sdi.netlify.app/ 200!
-/*    /index.html   200

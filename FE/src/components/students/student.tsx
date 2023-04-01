@@ -50,7 +50,7 @@ const ShowStudent = () => {
 
             {!loading && (
                 <Button sx={{}}>
-                    <Link className="a-left" to="/students/add">Back</Link>
+                    <Link className="a-left" to="/students">Back</Link>
                 </Button>
             )}
 

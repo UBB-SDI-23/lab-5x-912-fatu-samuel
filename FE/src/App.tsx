@@ -5,6 +5,7 @@ import ShowStudents from './components/students/students_all'
 import ShowStudent from './components/students/student';
 import AddStudent from './components/students/student_add';
 import { AppHome } from './components/home/app-home';
+import { DeleteStudent } from './components/students/student_delete';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
                     <Route path="" element={<AppHome />} />
                     <Route path="/students/add" element={<AddStudent />} />
                     <Route path="/students/:studentId" element={<ShowStudent />} />
+                    <Route path="/students/:studentId/delete" element={<DeleteStudent />} />
                     <Route path="/students" element={<ShowStudents />} />
                 </Routes>
             </Router>

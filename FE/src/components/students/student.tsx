@@ -3,6 +3,12 @@ import { API_URL } from "../../main";
 import { Student } from "../../models/student";
 import { useParams } from "react-router-dom";
 import { FullStudent } from "../../models/full-student";
+import { Card, CardActions, CardContent, IconButton } from "@mui/material";
+import { Container } from "@mui/system";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Link } from "react-router-dom";
 
 const ShowStudent = () => {
 
@@ -20,6 +26,8 @@ const ShowStudent = () => {
                 console.log(data);
             });
     }, [])
+
+
 
     if (!student) {
         return <div>No student found with the specified ID</div>
@@ -40,6 +48,16 @@ const ShowStudent = () => {
                     <li key={course.id}>{course.id}</li>
                 ))}
             </ul>
+
+            <CardActions>
+                <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${studentId}/edit`}>
+                    <EditIcon />
+                </IconButton>
+
+                <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${studentId}/delete`}>
+                    <DeleteForeverIcon sx={{ color: "red" }} />
+                </IconButton>
+            </CardActions>
         </div>
     )
 }

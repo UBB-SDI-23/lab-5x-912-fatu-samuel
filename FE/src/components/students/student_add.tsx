@@ -31,7 +31,7 @@ const AddStudent = () => {
         event.preventDefault();
 
         try {
-            await axios.post(`${API_URL}/students/`, student);
+            await axios.post(`../${API_URL}/students/`, student);
             navigate('/students');
         }
         catch (error) {

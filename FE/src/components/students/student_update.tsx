@@ -183,7 +183,7 @@ export const UpdateStudent = () => {
                                 }}
                                 onChange={(event) => setStudent({ ...student, phone_number: event.target.value })}
                             />
-                            <Button type="submit" sx={{ backgroundColor: '#242424', color: 'whitesmoke' }}>Update Student</Button>
+                            <Button type="submit" sx={{ backgroundColor: '#242424' }}>Update Student</Button>
                         </form>
 
                     </CardContent>

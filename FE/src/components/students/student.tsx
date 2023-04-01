@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { API_URL } from "../../main";
 import { Student } from "../../models/student";
 import { useParams } from "react-router-dom";
+import { FullStudent } from "../../models/full-student";
 
 const ShowStudent = () => {
 
     const { studentId } = useParams();
-    const [student, setStudent] = useState<Student>();
+    const [student, setStudent] = useState<FullStudent>();
 
     useEffect(() => {
         fetch(`../${API_URL}/students/${studentId}/`)
@@ -32,6 +33,13 @@ const ShowStudent = () => {
             <p>CNP: {student?.cnp}</p>
             <p>Date of birth: {student?.date_of_birth}</p>
             <p>County: {student?.county}</p>
+
+            <p>Courses:</p>
+            <ul>
+                {student?.courses?.map((course) => (
+                    <li key={course.id}>{course.id}</li>
+                ))}
+            </ul>
         </div>
     )
 }

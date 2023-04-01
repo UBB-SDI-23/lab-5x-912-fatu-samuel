@@ -56,8 +56,8 @@ const ShowStudent = () => {
 
             {!loading && student && (
                 <Card style={{ backgroundColor: "#242424" }}>
-                    <CardContent>
-                        <TableContainer>
+                    <CardContent style={{ backgroundColor: "#242424" }}>
+                        <TableContainer style={{ backgroundColor: "#242424" }}>
                             <Table>
                                 <TableBody>
 

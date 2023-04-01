@@ -55,12 +55,10 @@ const ShowStudent = () => {
             )}
 
             {!loading && student && (
-                <Card>
+                <Card style={{ backgroundColor: "#242424" }}>
                     <CardContent>
-
                         <TableContainer>
                             <Table>
-
                                 <TableBody>
 
                                     <TableRow>

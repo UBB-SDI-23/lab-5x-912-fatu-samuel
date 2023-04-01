@@ -45,7 +45,7 @@ export const UpdateStudent = () => {
         event.preventDefault();
 
         try {
-            await axios.post(`../../${API_URL}/students/`, student);
+            await axios.put(`../../${API_URL}/students/`, student);
             navigate('/students');
         }
         catch (error) {
@@ -71,12 +71,12 @@ export const UpdateStudent = () => {
                     <CardContent style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
                         <form onSubmit={updateStudent} style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
                             <TextField
+                                sx={{ mb: 2, color: "whitesmoke" }}
                                 id="name"
                                 label="Name"
                                 variant="outlined"
                                 fullWidth
                                 value={student.name}
-                                sx={{ mb: 2, color: "whitesmoke" }}
                                 onChange={(event) => setStudent({ ...student, name: event.target.value })}
                             />
                             <TextField

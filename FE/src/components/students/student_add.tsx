@@ -44,7 +44,7 @@ const AddStudent = () => {
                 <CardContent style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
 
                     <Button sx={{}}>
-                        <Link className="a-left" to="/students">Back</Link>
+                        <Link style={{ textAlign: "left" }} className="a-left" to="/students">Back</Link>
                     </Button>
 
                     <form onSubmit={addStudent}>

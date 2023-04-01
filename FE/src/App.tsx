@@ -1,10 +1,20 @@
+import React from 'react'
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ShowStudents from './components/students/students_all'
+import ShowStudent from './components/students/student';
 
 function App() {
 
     return (
-        <ShowStudents />
+        <React.Fragment>
+            <Router>
+                <Routes>
+                    <Route path="/students" element={<ShowStudents />} />
+                    <Route path="/students/:studentId" element={<ShowStudent />} />
+                </Routes>
+            </Router>
+        </React.Fragment>
     )
 }
 

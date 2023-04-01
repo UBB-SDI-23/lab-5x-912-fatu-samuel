@@ -12,7 +12,6 @@ const ShowStudents = () => {
             .then(res => res.json())
             .then(data => {
                 setStudents(data)
-                console.log(data);
             });
     }, [])
 
@@ -36,7 +35,7 @@ const ShowStudents = () => {
                 <tbody>
                     {students.map((student: Student, index) => (
                         <tr key={student.id}>
-                            <td>{index}</td>
+                            <td>{index + 1}</td>
                             <td>{student.name}</td>
                             <td>{student.cnp}</td>
                             <td>{student.date_of_birth}</td>

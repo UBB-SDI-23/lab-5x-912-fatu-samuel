@@ -66,7 +66,7 @@ const ShowStudentsAvgFee = () => {
                                     </TableCell>
                                     <TableCell sx={{ color: "whitesmoke" }} align="center">{student.cnp}</TableCell>
                                     <TableCell sx={{ color: "whitesmoke" }} align="center">{student.phone_number}</TableCell>
-                                    <TableCell sx={{ color: "whitesmoke" }} align="center">{student.avg_fee == 0 ? 0 : student.avg_fee}</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke" }} align="center">{student.avg_fee ? student.avg_fee : 0}</TableCell>
                                     <TableCell sx={{ color: "whitesmoke" }} align="center">
                                         <IconButton
                                             component={Link}

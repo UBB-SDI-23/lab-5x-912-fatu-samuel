@@ -23,10 +23,10 @@ export const DeleteStudent = () => {
         <Container>
             <Card>
                 <CardContent>
-                    <IconButton component={Link} sx={{ mr: 3 }} to={`/courses`}>
+                    <IconButton component={Link} sx={{ mr: 3 }} to={`/students`}>
                         <ArrowBackIcon />
                     </IconButton>{" "}
-                    Are you sure you want to delete this course? This cannot be undone!
+                    Are you sure you want to delete this student? This cannot be undone!
                 </CardContent>
                 <CardActions>
                     <Button onClick={handleDelete}>Delete it</Button>

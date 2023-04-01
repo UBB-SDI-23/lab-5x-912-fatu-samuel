@@ -44,7 +44,7 @@ const AddStudent = () => {
         <Container>
             <Card>
                 <CardContent>
-                    <IconButton component={Link} sx={{ mr: 3 }} to={`/courses`}>
+                    <IconButton component={Link} sx={{ mr: 3 }} to={`/students`}>
                         <ArrowBackIcon />
                     </IconButton>{" "}
                     <form onSubmit={addStudent}>

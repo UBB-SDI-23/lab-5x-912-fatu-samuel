@@ -35,30 +35,34 @@ const ShowStudent = () => {
 
     // use @mui/material to style the table
     return (
-        <div>
-            <h1>{student?.name}'s data</h1>
-            {/* show details in a div */}
-            <p>CNP: {student?.cnp}</p>
-            <p>Date of birth: {student?.date_of_birth}</p>
-            <p>County: {student?.county}</p>
+        <Container>
+            <Card>
+                <CardContent>
+                    <h1>{student?.name}'s data</h1>
+                    {/* show details in a div */}
+                    <p>CNP: {student?.cnp}</p>
+                    <p>Date of birth: {student?.date_of_birth}</p>
+                    <p>County: {student?.county}</p>
 
-            <p>Courses:</p>
-            <ul>
-                {student?.courses?.map((course) => (
-                    <li key={course.id}>{course.id}</li>
-                ))}
-            </ul>
+                    <p>Courses:</p>
+                    <ul>
+                        {student?.courses?.map((course) => (
+                            <li key={course.id}>{course.id}</li>
+                        ))}
+                    </ul>
+                </CardContent>
 
-            <CardActions>
-                <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${studentId}/edit`}>
-                    <EditIcon />
-                </IconButton>
+                <CardActions>
+                    <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${studentId}/edit`}>
+                        <EditIcon />
+                    </IconButton>
 
-                <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${studentId}/delete`}>
-                    <DeleteForeverIcon sx={{ color: "red" }} />
-                </IconButton>
-            </CardActions>
-        </div>
+                    <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${studentId}/delete`}>
+                        <DeleteForeverIcon sx={{ color: "red" }} />
+                    </IconButton>
+                </CardActions>
+            </Card>
+        </Container>
     )
 }
 

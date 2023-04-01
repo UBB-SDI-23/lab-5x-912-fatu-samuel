@@ -2,23 +2,22 @@ import { useEffect, useState } from "react";
 import { API_URL } from "../../main";
 import { Student } from "../../models/student";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import {
     Button,
     Card,
     CardActions,
     CardContent,
-    IconButton,
     TextField,
     CircularProgress,
 } from "@mui/material";
 import { Container } from "@mui/system";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
 
 export const UpdateStudent = () => {
 
     const navigate = useNavigate();
+    const { studentId } = useParams();
 
     const [loading, setLoading] = useState(true)
     const [student, setStudent] = useState({
@@ -34,7 +33,7 @@ export const UpdateStudent = () => {
 
     useEffect(() => {
         const getStudent = async () => {
-            const response = await axios.get(`../../${API_URL}/students/`);
+            const response = await axios.get(`../../${API_URL}/students/${studentId}/`);
             setStudent(response.data);
             setLoading(false);
             console.log(response.data);

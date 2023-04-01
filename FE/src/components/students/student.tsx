@@ -115,7 +115,7 @@ const ShowStudent = () => {
                     </CardContent>
 
                     <CardActions>
-                        <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${studentId}/edit`}>
+                        <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${studentId}/update`}>
                             <EditIcon sx={{ color: "whitesmoke" }} />
                         </IconButton>
 

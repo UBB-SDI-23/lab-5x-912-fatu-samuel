@@ -82,7 +82,7 @@ const ShowStudents = () => {
                                             </Tooltip>
                                         </IconButton>
 
-                                        <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${student.id}/edit`}>
+                                        <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${student.id}/update`}>
                                             <EditIcon sx={{ color: "whitesmoke" }} />
                                         </IconButton>
 

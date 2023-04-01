@@ -5,6 +5,7 @@ import axios from "axios";
 import { API_URL } from "../../main";
 
 export const DeleteStudent = () => {
+
     const { studentId } = useParams();
     const navigate = useNavigate();
 

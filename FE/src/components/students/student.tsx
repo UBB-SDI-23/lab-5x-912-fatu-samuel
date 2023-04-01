@@ -9,7 +9,7 @@ const ShowStudent = () => {
     const [student, setStudent] = useState<Student>();
 
     useEffect(() => {
-        fetch(`${API_URL}/students/${studentId}/`)
+        fetch(`${studentId}/`)
             .then(res => {
                 console.log(res);
                 return res.json();
@@ -17,7 +17,7 @@ const ShowStudent = () => {
             .then(data => {
                 setStudent(data)
             });
-    }, [studentId])
+    }, [])
 
     if (!student) {
         return <div>No student found with the specified ID</div>

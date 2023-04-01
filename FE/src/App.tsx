@@ -12,7 +12,7 @@ function App() {
         <React.Fragment>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<AppHome />} />
+                    <Route path="" element={<AppHome />} />
                     <Route path="/student/add" element={<AddStudent />} />
                     <Route path="/student/:studentId" element={<ShowStudent />} />
                     <Route path="/students" element={<ShowStudents />} />

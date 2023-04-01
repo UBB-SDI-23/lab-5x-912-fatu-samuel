@@ -8,10 +8,7 @@ const ShowStudents = () => {
 
     useEffect(() => {
         fetch(`${API_URL}/students/`)
-            .then(res => {
-                console.log(res);
-                return res.json();
-            })
+            .then(res => res.json())
             .then(data => {
                 setStudents(data)
             });

@@ -53,26 +53,26 @@ const ShowStudents = () => {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell sx={{ color: "white", fontWeight: "bold" }} align="center">#</TableCell>
-                                <TableCell sx={{ color: "white", fontWeight: "bold" }} align="center">Name</TableCell>
-                                <TableCell sx={{ color: "white", fontWeight: "bold" }} align="center">CNP</TableCell>
-                                <TableCell sx={{ color: "white", fontWeight: "bold" }} align="center">Phone number</TableCell>
-                                <TableCell sx={{ color: "white", fontWeight: "bold" }} align="center">Operation</TableCell>
+                                <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">#</TableCell>
+                                <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Name</TableCell>
+                                <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">CNP</TableCell>
+                                <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Phone number</TableCell>
+                                <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Operation</TableCell>
                             </TableRow>
                         </TableHead>
 
                         <TableBody>
                             {students.map((student: Student, index) => (
                                 <TableRow key={student.id}>
-                                    <TableCell sx={{ color: "white" }} align="center">{index + 1}</TableCell>
-                                    <TableCell sx={{ color: "white" }} align="center">
+                                    <TableCell sx={{ color: "whitesmoke" }} align="center">{index + 1}</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke" }} align="center">
                                         <Link to={`/students/${student.id}`}>
                                             {student.name}
                                         </Link>
                                     </TableCell>
-                                    <TableCell sx={{ color: "white" }} align="center">{student.cnp}</TableCell>
-                                    <TableCell sx={{ color: "white" }} align="center">{student.phone_number}</TableCell>
-                                    <TableCell sx={{ color: "white" }} align="center">
+                                    <TableCell sx={{ color: "whitesmoke" }} align="center">{student.cnp}</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke" }} align="center">{student.phone_number}</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke" }} align="center">
                                         <IconButton
                                             component={Link}
                                             sx={{ mr: 3 }}
@@ -83,7 +83,7 @@ const ShowStudents = () => {
                                         </IconButton>
 
                                         <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${student.id}/edit`}>
-                                            <EditIcon sx={{ color: "white" }} />
+                                            <EditIcon sx={{ color: "whitesmoke" }} />
                                         </IconButton>
 
                                         <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${student.id}/delete`}>

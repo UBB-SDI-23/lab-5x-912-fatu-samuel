@@ -7,7 +7,7 @@ const ShowStudents = () => {
     const [students, setStudents] = useState([])
 
     useEffect(() => {
-        fetch(`../${API_URL}/students/`)
+        fetch(`${API_URL}/students/`)
             .then(res => res.json())
             .then(data => {
                 setStudents(data)

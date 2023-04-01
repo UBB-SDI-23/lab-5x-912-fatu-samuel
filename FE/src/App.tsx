@@ -7,6 +7,7 @@ import AddStudent from './components/students/student_add';
 import { AppHome } from './components/home/app-home';
 import { DeleteStudent } from './components/students/student_delete';
 import { UpdateStudent } from './components/students/student_update';
+import ShowStudentsAvgFee from './components/students/students_avg';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/students/:studentId/delete" element={<DeleteStudent />} />
                     <Route path="/students/:studentId/update" element={<UpdateStudent />} />
                     <Route path="/students" element={<ShowStudents />} />
+                    <Route path="/students/avg-fee" element={<ShowStudentsAvgFee />} />
                 </Routes>
             </Router>
         </React.Fragment>

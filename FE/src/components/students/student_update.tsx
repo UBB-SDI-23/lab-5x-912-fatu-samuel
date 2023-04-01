@@ -45,7 +45,7 @@ export const UpdateStudent = () => {
         event.preventDefault();
 
         try {
-            await axios.put(`../../${API_URL}/students/`, student);
+            await axios.put(`../../${API_URL}/students/${studentId}/`, student);
             navigate('/students');
         }
         catch (error) {

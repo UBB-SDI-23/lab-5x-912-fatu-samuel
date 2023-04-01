@@ -1,8 +1,6 @@
 import {
     TableContainer,
-    Paper,
     Table,
-    TableHead,
     TableRow,
     TableCell,
     TableBody,
@@ -10,16 +8,17 @@ import {
     Container,
     IconButton,
     Tooltip,
+    Card,
+    CardContent,
+    CardActions,
     Button,
-} from "@mui/material"; import { useEffect, useState } from "react"
+} from "@mui/material";
 
 import { useEffect, useState } from "react";
 import { API_URL } from "../../main";
 import { Student } from "../../models/student";
 import { useParams } from "react-router-dom";
 import { FullStudent } from "../../models/full-student";
-import { Card, CardActions, CardContent, IconButton } from "@mui/material";
-import { Container } from "@mui/system";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";

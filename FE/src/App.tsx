@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
 import ShowStudents from './components/students/students_all'
 import ShowStudent from './components/students/student';
 import AddStudent from './components/students/student_add';
@@ -10,14 +10,14 @@ function App() {
 
     return (
         <React.Fragment>
-            <Router>
+            <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<AppHome />} />
                     <Route path="/students-add" element={<AddStudent />} />
                     <Route path="/students/:studentId" element={<ShowStudent />} />
                     <Route path="/students" element={<ShowStudents />} />
                 </Routes>
-            </Router>
+            </BrowserRouter>
         </React.Fragment>
     )
 }

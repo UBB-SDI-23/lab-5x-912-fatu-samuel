@@ -9,13 +9,14 @@ const ShowStudent = () => {
     const [student, setStudent] = useState<Student>();
 
     useEffect(() => {
-        fetch(`${API_URL}/students/${studentId}/`)
+        fetch(`home/${API_URL}/students/${studentId}/`)
             .then(res => {
                 console.log(res);
                 return res.json();
             })
             .then(data => {
                 setStudent(data)
+                console.log(data);
             });
     }, [])
 

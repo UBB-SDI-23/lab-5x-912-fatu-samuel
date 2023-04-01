@@ -21,6 +21,7 @@ const ShowStudents = () => {
     // use @mui/material to style the table
     return (
         <div>
+            <button>Add student</button>
             <h1>Students List</h1>
             <table>
                 <thead>

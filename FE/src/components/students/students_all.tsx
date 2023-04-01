@@ -43,7 +43,7 @@ const ShowStudents = () => {
             {!loading && students.length == 0 && <div>No students found</div>}
 
             {!loading && (
-                <Button>
+                <Button sx={{}}>
                     <Link to="/students/add">Add student</Link>
                 </Button>
             )}

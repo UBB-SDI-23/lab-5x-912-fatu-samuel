@@ -37,6 +37,7 @@ export const UpdateStudent = () => {
             const response = await axios.get(`../../${API_URL}/students/`);
             setStudent(response.data);
             setLoading(false);
+            console.log(response.data);
         }
         getStudent();
     }, [])
@@ -67,11 +68,8 @@ export const UpdateStudent = () => {
             )}
 
             {!loading && (
-                <Card style={{ backgroundColor: "#242424" }}>
-                    <CardContent style={{ backgroundColor: "#242424" }}>
-                        <IconButton component={Link} sx={{ mr: 3, color: "whitesmoke" }} to={`/students`}>
-                            <ArrowBackIcon />
-                        </IconButton>{" "}
+                <Card style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
+                    <CardContent style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
                         <form onSubmit={updateStudent}>
                             <TextField
                                 id="name"

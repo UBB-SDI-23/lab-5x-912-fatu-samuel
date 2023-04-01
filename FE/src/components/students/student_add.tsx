@@ -42,8 +42,8 @@ const AddStudent = () => {
 
     return (
         <Container>
-            <Card style={{ backgroundColor: "#242424" }}>
-                <CardContent style={{ backgroundColor: "#242424" }}>
+            <Card style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
+                <CardContent style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
                     <IconButton component={Link} sx={{ mr: 3 }} to={`/students`}>
                         <ArrowBackIcon />
                     </IconButton>{" "}

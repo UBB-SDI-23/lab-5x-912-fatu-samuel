@@ -41,12 +41,7 @@ const ShowStudent = () => {
             });
     }, [])
 
-
-
     return (
-
-
-
         <Container>
 
             {loading && <CircularProgress />}
@@ -58,7 +53,6 @@ const ShowStudent = () => {
                     <Link to="/students/add">Back</Link>
                 </Button>
             )}
-
 
             {!loading && student && (
                 <Card>
@@ -99,18 +93,6 @@ const ShowStudent = () => {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-
-                        <h1>{student?.name}'s data</h1>
-                        <p>CNP: {student?.cnp}</p>
-                        <p>Date of birth: {student?.date_of_birth}</p>
-                        <p>County: {student?.county}</p>
-
-                        <p>Courses:</p>
-                        <ul>
-                            {student?.courses?.map((course) => (
-                                <li key={course.id}>{course.id}</li>
-                            ))}
-                        </ul>
                     </CardContent>
 
                     <CardActions>

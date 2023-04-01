@@ -15,6 +15,7 @@ function App() {
                 </Routes>
             </Router>
         </React.Fragment>
+    )
 }
 
 export default App

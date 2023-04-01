@@ -10,8 +10,8 @@ function App() {
         <React.Fragment>
             <Router>
                 <Routes>
-                    <Route path="/students/:studentId" element={<ShowStudent />} />
                     <Route path="/students" element={<ShowStudents />} />
+                    <Route path="/students/:studentId" element={<ShowStudent />} />
                 </Routes>
             </Router>
         </React.Fragment>

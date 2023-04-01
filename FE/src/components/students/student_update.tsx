@@ -63,7 +63,7 @@ export const UpdateStudent = () => {
 
             {!loading && (
                 <Button sx={{}}>
-                    <Link to="/students">Back</Link>
+                    <Link className="a-left" to="/students">Back</Link>
                 </Button>
             )}
 

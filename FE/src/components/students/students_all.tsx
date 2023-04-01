@@ -76,7 +76,7 @@ const ShowStudents = () => {
                                         <IconButton
                                             component={Link}
                                             sx={{ mr: 3 }}
-                                            to={`/students/${student.id}/`}>
+                                            to={`/students/${student.id}`}>
                                             <Tooltip title="View student details" arrow>
                                                 <ReadMoreIcon color="primary" />
                                             </Tooltip>

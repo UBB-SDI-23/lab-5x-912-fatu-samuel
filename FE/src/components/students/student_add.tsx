@@ -42,7 +42,6 @@ const AddStudent = () => {
         <Container>
             <Card style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
                 <CardContent style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
-
                     <Button sx={{}}>
                         <Link style={{ textAlign: "left" }} className="a-left" to="/students">Back</Link>
                     </Button>

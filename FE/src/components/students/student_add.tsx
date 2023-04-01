@@ -45,9 +45,11 @@ const AddStudent = () => {
         <Container>
             <Card style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
                 <CardContent style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
-                    <IconButton component={Link} sx={{ mr: 3 }} to={`/students`}>
-                        <ArrowBackIcon />
-                    </IconButton>{" "}
+
+                    <Button sx={{}}>
+                        <Link to="/students">Back</Link>
+                    </Button>
+
                     <form onSubmit={addStudent}>
                         <TextField
                             id="name"

@@ -53,11 +53,11 @@ const ShowStudents = () => {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell sx={{ color: "white" }} align="center">#</TableCell>
-                                <TableCell sx={{ color: "white" }} align="center">Name</TableCell>
-                                <TableCell sx={{ color: "white" }} align="center">CNP</TableCell>
-                                <TableCell sx={{ color: "white" }} align="center">Phone number</TableCell>
-                                <TableCell sx={{ color: "white" }} align="center">Operation</TableCell>
+                                <TableCell sx={{ color: "white", fontWeight: "bold" }} align="center">#</TableCell>
+                                <TableCell sx={{ color: "white", fontWeight: "bold" }} align="center">Name</TableCell>
+                                <TableCell sx={{ color: "white", fontWeight: "bold" }} align="center">CNP</TableCell>
+                                <TableCell sx={{ color: "white", fontWeight: "bold" }} align="center">Phone number</TableCell>
+                                <TableCell sx={{ color: "white", fontWeight: "bold" }} align="center">Operation</TableCell>
                             </TableRow>
                         </TableHead>
 

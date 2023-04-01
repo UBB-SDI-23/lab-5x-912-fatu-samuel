@@ -21,9 +21,9 @@ export const DeleteStudent = () => {
 
     return (
         <Container>
-            <Card>
-                <CardContent>
-                    <IconButton component={Link} sx={{ mr: 3 }} to={`/students`}>
+            <Card style={{ backgroundColor: "#242424" }}>
+                <CardContent style={{ backgroundColor: "#242424" }}>
+                    <IconButton component={Link} sx={{ mr: 3, color: "whitesmoke" }} to={`/students`}>
                         <ArrowBackIcon />
                     </IconButton>{" "}
                     Are you sure you want to delete this student? This cannot be undone!

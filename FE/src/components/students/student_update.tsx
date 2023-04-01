@@ -67,92 +67,94 @@ const UpdateStudent = () => {
                 </Button>
             )}
 
-            {!loading && (<Card>
-                <CardContent>
-                    <IconButton component={Link} sx={{ mr: 3 }} to={`/students`}>
-                        <ArrowBackIcon />
-                    </IconButton>{" "}
-                    <form onSubmit={updateStudent}>
-                        <TextField
-                            id="name"
-                            label="Name"
-                            variant="outlined"
-                            fullWidth
-                            value={student.name}
-                            sx={{ mb: 2 }}
-                            onChange={(event) => setStudent({ ...student, name: event.target.value })}
-                        />
-                        <TextField
-                            id="cnp"
-                            label="CNP"
-                            variant="outlined"
-                            fullWidth
-                            value={student.cnp}
-                            sx={{ mb: 2 }}
-                            onChange={(event) => setStudent({ ...student, cnp: Number(event.target.value) })}
-                        />
-                        <TextField
-                            id="date_of_birth"
-                            label="Date of birth"
-                            variant="outlined"
-                            fullWidth
-                            value={student.date_of_birth}
-                            sx={{ mb: 2 }}
-                            onChange={(event) => setStudent({ ...student, date_of_birth: event.target.value })}
-                        />
-                        <TextField
-                            id="country"
-                            label="Country"
-                            variant="outlined"
-                            fullWidth
-                            value={student.country}
-                            sx={{ mb: 2 }}
-                            onChange={(event) => setStudent({ ...student, country: event.target.value })}
-                        />
-                        <TextField
-                            id="county"
-                            label="County"
-                            variant="outlined"
-                            fullWidth
-                            value={student.county}
-                            sx={{ mb: 2 }}
-                            onChange={(event) => setStudent({ ...student, county: event.target.value })}
-                        />
-                        <TextField
-                            id="city"
-                            label="City"
-                            variant="outlined"
-                            fullWidth
-                            value={student.city}
-                            sx={{ mb: 2 }}
-                            onChange={(event) => setStudent({ ...student, city: event.target.value })}
-                        />
-                        <TextField
-                            id="mail"
-                            label="Mail"
-                            variant="outlined"
-                            fullWidth
-                            value={student.mail_address}
-                            sx={{ mb: 2 }}
-                            onChange={(event) => setStudent({ ...student, mail_address: event.target.value })}
-                        />
-                        <TextField
-                            id="phone_number"
-                            label="Phone number"
-                            variant="outlined"
-                            fullWidth
-                            value={student.phone_number}
-                            sx={{ mb: 2 }}
-                            onChange={(event) => setStudent({ ...student, phone_number: event.target.value })}
-                        />
-                        <Button type="submit">Update Student</Button>
-                    </form>
+            {!loading && (
+                <Card style={{ backgroundColor: "#242424" }}>
+                    <CardContent style={{ backgroundColor: "#242424" }}>
+                        <IconButton component={Link} sx={{ mr: 3, color: "whitesmoke" }} to={`/students`}>
+                            <ArrowBackIcon />
+                        </IconButton>{" "}
+                        <form onSubmit={updateStudent}>
+                            <TextField
+                                id="name"
+                                label="Name"
+                                variant="outlined"
+                                fullWidth
+                                value={student.name}
+                                sx={{ mb: 2, color: "whitesmoke" }}
+                                onChange={(event) => setStudent({ ...student, name: event.target.value })}
+                            />
+                            <TextField
+                                id="cnp"
+                                label="CNP"
+                                variant="outlined"
+                                fullWidth
+                                value={student.cnp}
+                                sx={{ mb: 2, color: "whitesmoke" }}
+                                onChange={(event) => setStudent({ ...student, cnp: Number(event.target.value) })}
+                            />
+                            <TextField
+                                id="date_of_birth"
+                                label="Date of birth"
+                                variant="outlined"
+                                fullWidth
+                                value={student.date_of_birth}
+                                sx={{ mb: 2, color: "whitesmoke" }}
+                                onChange={(event) => setStudent({ ...student, date_of_birth: event.target.value })}
+                            />
+                            <TextField
+                                id="country"
+                                label="Country"
+                                variant="outlined"
+                                fullWidth
+                                value={student.country}
+                                sx={{ mb: 2, color: "whitesmoke" }}
+                                onChange={(event) => setStudent({ ...student, country: event.target.value })}
+                            />
+                            <TextField
+                                id="county"
+                                label="County"
+                                variant="outlined"
+                                fullWidth
+                                value={student.county}
+                                sx={{ mb: 2, color: "whitesmoke" }}
+                                onChange={(event) => setStudent({ ...student, county: event.target.value })}
+                            />
+                            <TextField
+                                id="city"
+                                label="City"
+                                variant="outlined"
+                                fullWidth
+                                value={student.city}
+                                sx={{ mb: 2, color: "whitesmoke" }}
+                                onChange={(event) => setStudent({ ...student, city: event.target.value })}
+                            />
+                            <TextField
+                                id="mail"
+                                label="Mail"
+                                variant="outlined"
+                                fullWidth
+                                value={student.mail_address}
+                                sx={{ mb: 2, color: "whitesmoke" }}
+                                onChange={(event) => setStudent({ ...student, mail_address: event.target.value })}
+                            />
+                            <TextField
+                                id="phone_number"
+                                label="Phone number"
+                                variant="outlined"
+                                fullWidth
+                                value={student.phone_number}
+                                sx={{ mb: 2, color: "whitesmoke" }}
+                                onChange={(event) => setStudent({ ...student, phone_number: event.target.value })}
+                            />
+                            <Button type="submit" sx={{ backgroundColor: '#242424', color: 'whitesmoke' }}>Update Student</Button>
+                        </form>
 
-                </CardContent>
-                <CardActions></CardActions>
-            </Card>
-            )}
-        </Container>
+                    </CardContent>
+                    <CardActions></CardActions>
+                </Card>
+            )
+            }
+        </Container >
     )
 }
 

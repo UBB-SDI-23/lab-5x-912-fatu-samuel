@@ -63,49 +63,49 @@ const ShowStudent = () => {
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Name</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">{student?.name}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{student?.name}</TableCell>
                                     </TableRow>
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">CNP</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">{student?.cnp}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{student?.cnp}</TableCell>
                                     </TableRow>
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Date of birth</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">{student?.date_of_birth}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{student?.date_of_birth}</TableCell>
                                     </TableRow>
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Country</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">{student?.country}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{student?.country}</TableCell>
                                     </TableRow>
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">County</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">{student?.county}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{student?.county}</TableCell>
                                     </TableRow>
 
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">City</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">{student?.city}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{student?.city}</TableCell>
                                     </TableRow>
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Mail</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">{student?.mail_address}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{student?.mail_address}</TableCell>
                                     </TableRow>
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Phone number</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">{student?.phone_number}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{student?.phone_number}</TableCell>
                                     </TableRow>
 
                                     <TableRow>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Courses</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">{student?.courses?.map((course) => (
-                                            <li key={course.id}>{course.id}</li>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Courses</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{student?.courses?.map((course) => (
+                                            <li key={course.id}>{course.name}</li>
                                         ))}</TableCell>
                                     </TableRow>
 

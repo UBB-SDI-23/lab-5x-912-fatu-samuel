@@ -7,7 +7,6 @@ const ShowStudents = () => {
     const [students, setStudents] = useState([])
 
     useEffect(() => {
-        console.log('useEffect');
         fetch(`${API_URL}/students/`)
             .then(res => {
                 console.log(res);

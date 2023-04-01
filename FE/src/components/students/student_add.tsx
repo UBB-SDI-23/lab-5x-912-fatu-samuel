@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../../main";
-import { Student } from "../../models/student";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button, Card, CardActions, CardContent, IconButton, TextField } from "@mui/material";
 import { Container } from "@mui/system";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
-import '../../index.css'
-
+import '../../App.css';
 
 const AddStudent = () => {
 
@@ -111,7 +108,7 @@ const AddStudent = () => {
                             sx={{ mb: 2, color: "whitesmoke" }}
                             InputProps={{
                                 style: {
-                                    color: "whitesmoke"
+                                    color: "whitesmoke !important"
                                 }
                             }}
                             onChange={(event) => setStudent({ ...student, county: event.target.value })}

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../../main";
-import { Student } from "../../models/student";
 import axios from "axios";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import {

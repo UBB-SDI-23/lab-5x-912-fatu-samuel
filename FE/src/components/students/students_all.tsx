@@ -45,13 +45,12 @@ const ShowStudents = () => {
             {!loading && (
                 <Button>
                     <Link to="/students/add">Add student</Link>
-                    Add Student
                 </Button>
             )}
 
             {!loading && students.length > 0 && (
                 <TableContainer>
-                    <Table>
+                    <Table sx={{ color: "white" }}>
                         <TableHead>
                             <TableRow>
                                 <TableCell align="center">#</TableCell>
@@ -84,7 +83,7 @@ const ShowStudents = () => {
                                         </IconButton>
 
                                         <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${student.id}/edit`}>
-                                            <EditIcon />
+                                            <EditIcon sx={{ color: "white" }} />
                                         </IconButton>
 
                                         <IconButton component={Link} sx={{ mr: 3 }} to={`/students/${student.id}/delete`}>

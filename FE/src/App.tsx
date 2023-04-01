@@ -11,7 +11,7 @@ function App() {
         <React.Fragment>
             <Router>
                 <Routes>
-                    <Route path="/students/add" element={<AddStudent />} />
+                    <Route path="/students-add" element={<AddStudent />} />
                     <Route path="/students/:studentId" element={<ShowStudent />} />
                     <Route path="/students" element={<ShowStudents />} />
                 </Routes>

@@ -44,3 +44,7 @@
 .textfield_label {
   color: whitesmoke !important;
 }
+
+.MuiInputBase-root {
+  color: whitesmoke !important;
+}

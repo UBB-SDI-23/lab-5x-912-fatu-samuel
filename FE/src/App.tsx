@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ShowStudents from './components/students/students_all'
 import ShowStudent from './components/students/student';
 import AddStudent from './components/students/student_add';
+import { AppHome } from './components/home/app-home';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
         <React.Fragment>
             <Router>
                 <Routes>
+                    <Route path="/" element={<AppHome />} />
                     <Route path="/students-add" element={<AddStudent />} />
                     <Route path="/students/:studentId" element={<ShowStudent />} />
                     <Route path="/students" element={<ShowStudents />} />

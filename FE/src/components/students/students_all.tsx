@@ -50,29 +50,29 @@ const ShowStudents = () => {
 
             {!loading && students.length > 0 && (
                 <TableContainer>
-                    <Table sx={{ color: "white" }}>
+                    <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">#</TableCell>
-                                <TableCell align="center">Name</TableCell>
-                                <TableCell align="center">CNP</TableCell>
-                                <TableCell align="center">Phone number</TableCell>
-                                <TableCell align="center">Operation</TableCell>
+                                <TableCell sx={{ color: "white" }} align="center">#</TableCell>
+                                <TableCell sx={{ color: "white" }} align="center">Name</TableCell>
+                                <TableCell sx={{ color: "white" }} align="center">CNP</TableCell>
+                                <TableCell sx={{ color: "white" }} align="center">Phone number</TableCell>
+                                <TableCell sx={{ color: "white" }} align="center">Operation</TableCell>
                             </TableRow>
                         </TableHead>
 
                         <TableBody>
                             {students.map((student: Student, index) => (
                                 <TableRow key={student.id}>
-                                    <TableCell align="center">{index + 1}</TableCell>
-                                    <TableCell align="center">
+                                    <TableCell sx={{ color: "white" }} align="center">{index + 1}</TableCell>
+                                    <TableCell sx={{ color: "white" }} align="center">
                                         <Link to={`/students/${student.id}`}>
                                             {student.name}
                                         </Link>
                                     </TableCell>
-                                    <TableCell align="center">{student.cnp}</TableCell>
-                                    <TableCell align="center">{student.phone_number}</TableCell>
-                                    <TableCell align="center">
+                                    <TableCell sx={{ color: "white" }} align="center">{student.cnp}</TableCell>
+                                    <TableCell sx={{ color: "white" }} align="center">{student.phone_number}</TableCell>
+                                    <TableCell sx={{ color: "white" }} align="center">
                                         <IconButton
                                             component={Link}
                                             sx={{ mr: 3 }}

@@ -7,6 +7,8 @@ import { Button, Card, CardActions, CardContent, IconButton, TextField } from "@
 import { Container } from "@mui/system";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
+import '../../index.css'
+
 
 const AddStudent = () => {
 
@@ -24,14 +26,12 @@ const AddStudent = () => {
     });
 
     useEffect(() => {
-
     }, [])
 
     const addStudent = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
         try {
-            console.log('HUH?????');
             await axios.post(`../${API_URL}/students/`, student);
             navigate('/students');
         }
@@ -123,9 +123,7 @@ const AddStudent = () => {
                             fullWidth
                             sx={{ mb: 2, color: "whitesmoke" }}
                             InputProps={{
-                                style: {
-                                    color: "whitesmoke"
-                                }
+                                className: "textfield_label"
                             }}
                             onChange={(event) => setStudent({ ...student, city: event.target.value })}
                         />
@@ -136,9 +134,7 @@ const AddStudent = () => {
                             fullWidth
                             sx={{ mb: 2, color: "whitesmoke" }}
                             InputProps={{
-                                style: {
-                                    color: "whitesmoke"
-                                }
+                                className: "textfield_label"
                             }}
                             onChange={(event) => setStudent({ ...student, mail_address: event.target.value })}
                         />
@@ -149,9 +145,7 @@ const AddStudent = () => {
                             fullWidth
                             sx={{ mb: 2, color: "whitesmoke" }}
                             InputProps={{
-                                style: {
-                                    color: "whitesmoke"
-                                }
+                                className: "textfield_label"
                             }}
                             onChange={(event) => setStudent({ ...student, phone_number: event.target.value })}
                         />

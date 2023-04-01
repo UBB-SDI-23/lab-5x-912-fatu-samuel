@@ -164,7 +164,7 @@ export const UpdateStudent = () => {
                                 sx={{ mb: 2, color: "whitesmoke" }}
                                 InputProps={{
                                     style: {
-                                        color: "whitesmoke"!important
+                                        color: "whitesmoke"
                                     }
                                 }}
                                 onChange={(event) => setStudent({ ...student, mail_address: event.target.value })}

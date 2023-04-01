@@ -22,7 +22,7 @@ export const DeleteStudent = () => {
     return (
         <Container>
             <Card style={{ backgroundColor: "#242424" }}>
-                <CardContent style={{ backgroundColor: "#242424" }}>
+                <CardContent style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
                     <IconButton component={Link} sx={{ mr: 3, color: "whitesmoke" }} to={`/students`}>
                         <ArrowBackIcon />
                     </IconButton>{" "}

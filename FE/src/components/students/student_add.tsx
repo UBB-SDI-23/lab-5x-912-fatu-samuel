@@ -53,7 +53,7 @@ const AddStudent = () => {
                             label="Name"
                             variant="outlined"
                             fullWidth
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 2, color: "whitesmoke" }}
                             onChange={(event) => setStudent({ ...student, name: event.target.value })}
                         />
                         <TextField
@@ -61,7 +61,7 @@ const AddStudent = () => {
                             label="CNP"
                             variant="outlined"
                             fullWidth
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 2, color: "whitesmoke" }}
                             onChange={(event) => setStudent({ ...student, cnp: Number(event.target.value) })}
                         />
                         <TextField
@@ -69,7 +69,7 @@ const AddStudent = () => {
                             label="Date of birth"
                             variant="outlined"
                             fullWidth
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 2, color: "whitesmoke" }}
                             onChange={(event) => setStudent({ ...student, date_of_birth: event.target.value })}
                         />
                         <TextField
@@ -77,7 +77,7 @@ const AddStudent = () => {
                             label="Country"
                             variant="outlined"
                             fullWidth
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 2, color: "whitesmoke" }}
                             onChange={(event) => setStudent({ ...student, country: event.target.value })}
                         />
                         <TextField
@@ -85,7 +85,7 @@ const AddStudent = () => {
                             label="County"
                             variant="outlined"
                             fullWidth
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 2, color: "whitesmoke" }}
                             onChange={(event) => setStudent({ ...student, county: event.target.value })}
                         />
                         <TextField
@@ -93,7 +93,7 @@ const AddStudent = () => {
                             label="City"
                             variant="outlined"
                             fullWidth
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 2, color: "whitesmoke" }}
                             onChange={(event) => setStudent({ ...student, city: event.target.value })}
                         />
                         <TextField
@@ -101,7 +101,7 @@ const AddStudent = () => {
                             label="Mail"
                             variant="outlined"
                             fullWidth
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 2, color: "whitesmoke" }}
                             onChange={(event) => setStudent({ ...student, mail_address: event.target.value })}
                         />
                         <TextField
@@ -109,7 +109,7 @@ const AddStudent = () => {
                             label="Phone number"
                             variant="outlined"
                             fullWidth
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 2, color: "whitesmoke" }}
                             onChange={(event) => setStudent({ ...student, phone_number: event.target.value })}
                         />
                         <Button type="submit">Add Student</Button>

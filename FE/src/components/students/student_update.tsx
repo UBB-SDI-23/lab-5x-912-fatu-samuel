@@ -16,7 +16,7 @@ import { Container } from "@mui/system";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
 
-const UpdateStudent = () => {
+export const UpdateStudent = () => {
 
     const navigate = useNavigate();
 
@@ -51,7 +51,6 @@ const UpdateStudent = () => {
         catch (error) {
             console.log(error);
         }
-
     }
 
     return (
@@ -157,5 +156,3 @@ const UpdateStudent = () => {
         </Container >
     )
 }
-
-export default UpdateStudent;

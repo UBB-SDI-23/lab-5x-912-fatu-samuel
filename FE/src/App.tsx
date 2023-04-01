@@ -10,12 +10,11 @@ function App() {
         <React.Fragment>
             <Router>
                 <Routes>
-                    <Route path="/students" element={<ShowStudents />} />
                     <Route path="/students/:studentId" element={<ShowStudent />} />
+                    {/* <Route path="/students" element={<ShowStudents />} /> */}
                 </Routes>
             </Router>
         </React.Fragment>
-    )
 }
 
 export default App

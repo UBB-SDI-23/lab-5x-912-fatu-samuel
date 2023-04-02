@@ -24,7 +24,7 @@ export const AppMenu = () => {
                         <SchoolIcon />
                     </IconButton>
                     <Button
-                        variant={path.startsWith("/students") ? "outlined" : "text"}
+                        variant={path == "/students" ? "outlined" : "text"}
                         to="/students"
                         component={Link}
                         color="inherit"

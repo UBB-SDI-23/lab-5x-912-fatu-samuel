@@ -15,7 +15,7 @@ export const AppMenu = () => {
                 <Toolbar>
                     <IconButton
                         component={Link}
-                        to="/students"
+                        to="/"
                         size="large"
                         edge="start"
                         color="inherit"

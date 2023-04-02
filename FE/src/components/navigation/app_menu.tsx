@@ -15,7 +15,7 @@ export const AppMenu = () => {
                 <Toolbar>
                     <IconButton
                         component={Link}
-                        to="/student"
+                        to="/students"
                         size="large"
                         edge="start"
                         color="inherit"
@@ -23,16 +23,22 @@ export const AppMenu = () => {
                         sx={{ mr: 2 }}>
                         <SchoolIcon />
                     </IconButton>
-                    <Typography variant="h6" component="div" sx={{ mr: 5 }}>
+                    <Button
+                        variant={path.startsWith("/students") ? "outlined" : "text"}
+                        to="/students"
+                        component={Link}
+                        color="inherit"
+                        sx={{ mr: 5 }}
+                        startIcon={<LocalLibraryIcon />}>
                         Students
-                    </Typography>
+                    </Button>
                     <Button
                         variant={path.startsWith("/students/avg-fee") ? "outlined" : "text"}
                         to="/students/avg-fee"
                         component={Link}
                         color="inherit"
                         sx={{ mr: 5 }}
-                        startIcon={<LocalLibraryIcon />}>
+                        startIcon={<BarChartOutlinedIcon />}>
                         Statistics
                     </Button>
                 </Toolbar>

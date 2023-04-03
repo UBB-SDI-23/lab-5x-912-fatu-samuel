@@ -19,6 +19,8 @@ import AddIcon from "@mui/icons-material/Add";
 import { Student } from "../../models/student";
 import { API_URL } from "../../main";
 import { Link } from "react-router-dom";
+import SortIcon from '@mui/icons-material/Sort';
+
 
 const ShowStudents = () => {
 
@@ -34,6 +36,20 @@ const ShowStudents = () => {
             });
     }, [])
 
+    const sortStudents = () => {
+        const sortedStudents = students.sort((a: Student, b: Student) => {
+            if (a.cnp < b.cnp) {
+                return -1;
+            }
+            if (a.cnp > b.cnp) {
+                return 1;
+            }
+            return 0;
+        })
+        setStudents(sortedStudents);
+    }
+
+
     return (
         <Container>
             <h1>All students</h1>
@@ -45,6 +61,12 @@ const ShowStudents = () => {
             {!loading && (
                 <Button sx={{}}>
                     <Link to="/students/add">Add student</Link>
+                </Button>
+            )}
+
+            {!loading && (
+                <Button sx={{}} onClick={sortStudents} >
+                    Sort students
                 </Button>
             )}
 

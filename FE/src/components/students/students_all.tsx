@@ -45,7 +45,7 @@ const ShowStudents = () => {
             return 0;
         })
         console.log(sortedStudents);
-        setStudents([...sortedStudents, ...students]);
+        setStudents([...sortedStudents]);
     }
 
 

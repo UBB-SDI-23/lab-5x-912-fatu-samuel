@@ -38,10 +38,10 @@ const ShowStudents = () => {
 
     const sortStudents = () => {
         const sortedStudents = [...students].sort((a: Student, b: Student) => {
-            if (a.name < b.name) {
+            if (a.cnp < b.cnp) {
                 return -1;
             }
-            if (a.name > b.name) {
+            if (a.cnp > b.cnp) {
                 return 1;
             }
             return 0;

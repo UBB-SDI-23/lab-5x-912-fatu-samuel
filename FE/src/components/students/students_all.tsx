@@ -59,14 +59,14 @@ const ShowStudents = () => {
             {!loading && students.length == 0 && <div>No students found</div>}
 
             {!loading && (
-                <Button sx={{}} onClick={sortStudents}>
+                <Button sx={{}}>
                     <Link to="/students/add">Add student</Link>
                 </Button>
             )}
 
             {!loading && (
-                <Button sx={{}}>
-                    <Link to="/students/add">Sort students</Link>
+                <Button sx={{}} onClick={sortStudents}>
+                    Sort students
                 </Button>
             )}
 

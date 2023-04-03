@@ -15,42 +15,38 @@ import {
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import AddIcon from "@mui/icons-material/Add";
 import { Student } from "../../models/student";
 import { API_URL } from "../../main";
 import { Link } from "react-router-dom";
+import SortIcon from '@mui/icons-material/Sort';
 
 
 const ShowStudents = () => {
 
-    const [loading, setLoading] = useState(true);
-    const [students, setStudents] = useState([]);
-    const [sorted, setSorted] = useState(false);
+    const [loading, setLoading] = useState(true)
+    const [students, setStudents] = useState([])
 
     useEffect(() => {
-        getStudents();
-        sorted && sortStudents();
-    }, [students])
-
-
-    const getStudents = () => {
         fetch(`/${API_URL}/students/`)
             .then(res => res.json())
             .then(data => {
                 setStudents(data);
                 setLoading(false);
             });
-    }
+    }, [])
 
     const sortStudents = () => {
-        return students.sort((a: Student, b: Student) => {
-            if (a.cnp < b.cnp) {
+        const sortedStudents = [...students].sort((a: Student, b: Student) => {
+            if (a.name < b.name) {
                 return -1;
             }
-            if (a.cnp > b.cnp) {
+            if (a.name > b.name) {
                 return 1;
             }
             return 0;
         })
+        setStudents(sortedStudents);
     }
 
 
@@ -63,17 +59,14 @@ const ShowStudents = () => {
             {!loading && students.length == 0 && <div>No students found</div>}
 
             {!loading && (
-                <Button sx={{}}>
+                <Button sx={{}} onClick={sortStudents}>
                     <Link to="/students/add">Add student</Link>
                 </Button>
             )}
 
             {!loading && (
-                <Button sx={{}} onClick={() => {
-                    setSorted(true);
-                    sortStudents();
-                }} >
-                    Sort students
+                <Button sx={{}}>
+                    <Link to="/students/add">Sort students</Link>
                 </Button>
             )}
 

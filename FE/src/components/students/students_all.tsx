@@ -15,11 +15,9 @@ import {
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import AddIcon from "@mui/icons-material/Add";
 import { Student } from "../../models/student";
 import { API_URL } from "../../main";
 import { Link } from "react-router-dom";
-import SortIcon from '@mui/icons-material/Sort';
 
 
 const ShowStudents = () => {
@@ -46,6 +44,7 @@ const ShowStudents = () => {
             }
             return 0;
         })
+        console.log(sortedStudents);
         setStudents(sortedStudents);
     }
 

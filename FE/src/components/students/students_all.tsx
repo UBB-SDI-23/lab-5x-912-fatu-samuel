@@ -22,20 +22,27 @@ import { Link } from "react-router-dom";
 
 const ShowStudents = () => {
 
-    const [loading, setLoading] = useState(true)
-    const [students, setStudents] = useState([])
+    const [loading, setLoading] = useState(true);
+    const [students, setStudents] = useState([]);
+    const [sorted, setSorted] = useState(false);
 
     useEffect(() => {
+        getStudents();
+        sorted && sortStudents();
+    }, [students])
+
+
+    const getStudents = () => {
         fetch(`/${API_URL}/students/`)
             .then(res => res.json())
             .then(data => {
                 setStudents(data);
                 setLoading(false);
             });
-    }, [students])
+    }
 
     const sortStudents = () => {
-        const sortedStudents = students.sort((a: Student, b: Student) => {
+        return students.sort((a: Student, b: Student) => {
             if (a.cnp < b.cnp) {
                 return -1;
             }
@@ -44,9 +51,6 @@ const ShowStudents = () => {
             }
             return 0;
         })
-        console.log(sortedStudents);
-        setStudents([]);
-        setStudents([...sortedStudents]);
     }
 
 
@@ -65,7 +69,10 @@ const ShowStudents = () => {
             )}
 
             {!loading && (
-                <Button sx={{}} onClick={sortStudents} >
+                <Button sx={{}} onClick={() => {
+                    setSorted(true);
+                    sortStudents();
+                }} >
                     Sort students
                 </Button>
             )}

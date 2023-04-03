@@ -34,7 +34,7 @@ const ShowStudents = () => {
                 setStudents(data);
                 setLoading(false);
             });
-    }, [])
+    }, [students])
 
     const sortStudents = () => {
         const sortedStudents = students.sort((a: Student, b: Student) => {

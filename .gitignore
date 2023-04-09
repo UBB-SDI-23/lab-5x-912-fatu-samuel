@@ -1,3 +1,5 @@
 
 FE/src/main.tsx
 BE/src/.env
+*.pyc
+BE/src/Main/tests/__pycache__/test_avg_fee.cpython-310.pyc

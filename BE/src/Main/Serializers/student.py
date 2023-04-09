@@ -9,8 +9,6 @@ class StudentSerializer(DynamicFieldsModelSerializer):
     cnp = serializers.IntegerField()
     date_of_birth = serializers.DateField()
     country = serializers.CharField(max_length = 64)
-    county = serializers.CharField(max_length = 64)
-    city = serializers.CharField(max_length = 64)
     mail_address = serializers.CharField(max_length = 128)
     phone_number = serializers.CharField(max_length = 10)
     courses = CourseSerializer(many = True, read_only = True)

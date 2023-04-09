@@ -15,8 +15,6 @@ class StudentAvgFeeTestCase(APITestCase):
                 cnp = f"123456789012{i}",
                 date_of_birth = "2000-01-01",
                 country = "Romania",
-                county = "Cluj",
-                city = "Cluj",
                 phone_number = "1234567890"
             )
 

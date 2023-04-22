@@ -8,6 +8,12 @@ class Teacher(models.Model):
     phone_number = models.CharField(max_length = 10)
     description = models.CharField(max_length = 5012, default = '-')
     
+
+    class Meta:
+        indexes = [
+            models.Index(fields = ['id'], name = 'teacher_id_index')
+        ]
+
     def __str__(self):
         return f"{self.cnp} - {self.name} - {self.date_of_birth} - {self.mail_address} - {self.phone_number}"
     

@@ -10,5 +10,11 @@ class Course(models.Model):
     size = models.IntegerField()
 
 
+    class Meta:
+        indexes = [
+            models.Index(fields = ['teacher'], name = 'course_teacher_index'),
+            models.Index(fields = ['id'], name = 'course_id_index')
+        ]
+
     def __str__(self):
         return f"{self.name} - {self.description} - {self.teacher} - {self.fee} - {self.size}"

@@ -10,5 +10,10 @@ class Student(models.Model):
     phone_number = models.CharField(max_length = 10)
     courses = models.ManyToManyField("Course", through = "StudentCourse")
         
+    class Meta:
+        indexes = [
+            models.Index(fields = ['id'], name = 'student_id_index')
+        ]
+
     def __str__(self):
         return f"{self.cnp} - {self.name} - {self.date_of_birth} - {self.country} - {self.mail_address} - {self.phone_number}"

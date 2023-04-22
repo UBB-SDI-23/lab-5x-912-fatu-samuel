@@ -1,4 +1,7 @@
 import rest_framework.views as RestViews
+
+from api.Models.course import Course
+from api.Serializers.course import CourseSerializer
 from ...Models.student import Student
 from ...Models.student_course import StudentCourse
 from ...Serializers.student import StudentSerializer
@@ -19,17 +22,15 @@ class StudentView(RestViews.APIView):
         serializer = StudentSerializer(object, depth = 1)
         data = serializer.data
 
-        student_course_data = StudentCourseSerializer(StudentCourse.objects.all(), many = True).data
-        print(data)
         new_courses = []
 
-        for course in data['courses']:
-            print(course['id'])
-            print(student_course_data[course['id']])
+        for course in data['courses'][:10]:
+            extra_data = Course.objects.get(id = course['id'])
+            course_data = CourseSerializer(extra_data).data
+
             new_courses.append({
                 'id': course['id'],
-                'final_lab_score': student_course_data[course['id']]['final_lab_score'],
-                'final_exam_score': student_course_data[course['id']]['final_exam_score']
+                'name': course_data['name']
             })
 
         data['courses'] = new_courses

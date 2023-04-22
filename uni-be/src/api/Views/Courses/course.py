@@ -1,5 +1,8 @@
 import rest_framework.views as RestViews
 
+from api.Models.student import Student
+from api.Serializers.student import StudentSerializer
+
 from ...Models.course import Course
 from ...Models.student_course import StudentCourse
 from ...Serializers.course import CourseSerializer
@@ -13,25 +16,22 @@ class FullCourseView(RestViews.APIView):
 
     def get(self, request, id):
         try:
-            objects = Course.objects.get(id = id)
+            course = Course.objects.get(id = id)
         except Course.DoesNotExist:
             message = {"msg": f"{Course.__name__} with ID = `{id}` does not exist!"}
             return RestReponses.Response(message, status = status.HTTP_404_NOT_FOUND)
 
-        serializer = CourseSerializer(objects, depth = 1)
+        serializer = CourseSerializer(course, depth = 1)
 
         data = serializer.data
-        data['teacher'] = data['teacher']['id']
-
         new_students = []
 
         for student in data['students']:
-            extra_data = StudentCourse.objects.get(student = student['id'], course = id)
-            student_course_serializer = StudentCourseSerializer(extra_data)
+            extra_data = Student.objects.get(id = int(student['id']))
+            student_serializer = StudentSerializer(extra_data)
             new_students.append({
                 'id': student['id'],
-                'final_lab_score': student_course_serializer.data['final_lab_score'],
-                'final_exam_score': student_course_serializer.data['final_exam_score']
+                'name': student_serializer.data['name']
             })
             
         data['students'] = new_students

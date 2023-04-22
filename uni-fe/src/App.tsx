@@ -14,6 +14,8 @@ import AddTeacher from './components/teachers/AddTeacher';
 import ViewTeacher from './components/teachers/ViewTeacher';
 import { UpdateTeacher } from './components/teachers/UpdateTeacher';
 import { DeleteTeacher } from './components/teachers/DeleteTeacher';
+import { ViewAllCourses } from './components/courses/ViewAllCourses';
+import { ViewCourse } from './components/courses/ViewCourse';
 
 function App() {
 
@@ -40,6 +42,10 @@ function App() {
                     <Route path="/teachers/:teacherId" element={<ViewTeacher />} />
                     <Route path="/teachers/:teacherId/update" element={<UpdateTeacher />} />
                     <Route path="/teachers/:teacherId/delete" element={<DeleteTeacher />} />
+
+                    <Route path="/courses" element={<ViewAllCourses />} />
+                    <Route path="/courses/:courseId" element={<ViewCourse />} />
+
                 </Routes>
             </Router>
         </React.Fragment>

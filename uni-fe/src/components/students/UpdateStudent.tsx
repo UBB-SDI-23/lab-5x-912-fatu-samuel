@@ -60,12 +60,6 @@ export const UpdateStudent = () => {
             {!loading && !student && <div>Student not found</div>}
 
             {!loading && (
-                <Button sx={{}}>
-                    <Link className="a-left" to="/students">Back</Link>
-                </Button>
-            )}
-
-            {!loading && (
                 <Card style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
                     <CardContent style={{ backgroundColor: "#242424", color: "whitesmoke" }}>
                         <form onSubmit={updateStudent} style={{ backgroundColor: "#242424", color: "whitesmoke" }}>

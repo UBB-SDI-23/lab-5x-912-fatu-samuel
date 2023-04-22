@@ -21,20 +21,21 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../constants";
 import { TeacherWithCourses } from "../../models/TeacherWithCourses";
+import { Course } from "../../models/Course";
 
-const ViewTeacher = () => {
+export const ViewCourse = () => {
 
     const [loading, setLoading] = useState(true)
-    const { teacherId } = useParams();
-    const [teacher, setTeacher] = useState<TeacherWithCourses>();
+    const { courseId } = useParams();
+    const [course, setCourses] = useState<Course>();
 
     useEffect(() => {
-        fetch(`${API_URL}/teachers/${teacherId}/`)
+        fetch(`${API_URL}/courses/${courseId}/`)
             .then(res => {
                 return res.json();
             })
             .then(data => {
-                setTeacher(data)
+                setCourses(data)
                 setLoading(false);
             });
     }, [])
@@ -44,9 +45,9 @@ const ViewTeacher = () => {
 
             {loading && <CircularProgress />}
 
-            {!loading && !teacher && <div>Teacher not found</div>}
+            {!loading && !course && <div>Teacher not found</div>}
 
-            {!loading && teacher && (
+            {!loading && course && (
                 <Card style={{ backgroundColor: "#242424" }}>
                     <CardContent style={{ backgroundColor: "#242424" }}>
                         <TableContainer style={{ backgroundColor: "#242424" }}>
@@ -55,37 +56,36 @@ const ViewTeacher = () => {
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Name</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{teacher?.name}</TableCell>
-                                    </TableRow>
-
-                                    <TableRow>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">CNP</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{teacher?.cnp}</TableCell>
-                                    </TableRow>
-
-                                    <TableRow>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Date of birth</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{teacher?.date_of_birth}</TableCell>
-                                    </TableRow>
-
-                                    <TableRow>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Mail</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{teacher?.mail_address}</TableCell>
-                                    </TableRow>
-
-                                    <TableRow>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Phone number</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{teacher?.phone_number}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{course?.name}</TableCell>
                                     </TableRow>
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Description</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{teacher?.description}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{course?.description}</TableCell>
                                     </TableRow>
 
                                     <TableRow>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Courses</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{teacher?.courses?.map((course) => (
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Fee</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{course?.fee}</TableCell>
+                                    </TableRow>
+
+                                    <TableRow>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Size</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{course?.size}</TableCell>
+                                    </TableRow>
+
+                                    <TableRow>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Teacher</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">
+                                            <Link to={`/teachers/${course?.teacher?.id}`}>
+                                                {course?.teacher?.name}
+                                            </Link>
+                                        </TableCell>
+                                    </TableRow>
+
+                                    <TableRow>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Students</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{course?.students?.map((course) => (
                                             <li key={course.id}>{course.name}</li>
                                         ))}</TableCell>
                                     </TableRow>
@@ -96,11 +96,11 @@ const ViewTeacher = () => {
                     </CardContent>
 
                     <CardActions>
-                        <IconButton component={Link} sx={{ mr: 3 }} to={`/teachers/${teacherId}/update`}>
+                        <IconButton component={Link} sx={{ mr: 3 }} to={`/courses/${courseId}/update`}>
                             <EditIcon sx={{ color: "whitesmoke" }} />
                         </IconButton>
 
-                        <IconButton component={Link} sx={{ mr: 3 }} to={`/teachers/${teacherId}/delete`}>
+                        <IconButton component={Link} sx={{ mr: 3 }} to={`/courses/${courseId}/delete`}>
                             <DeleteForeverIcon sx={{ color: "red" }} />
                         </IconButton>
                     </CardActions>
@@ -110,5 +110,3 @@ const ViewTeacher = () => {
         </Container>
     )
 }
-
-export default ViewTeacher;

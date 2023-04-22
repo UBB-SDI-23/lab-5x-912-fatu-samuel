@@ -46,12 +46,6 @@ const ViewStudent = () => {
 
             {!loading && !student && <div>Student not found</div>}
 
-            {!loading && (
-                <Button sx={{}}>
-                    <Link className="a-left" to="/students">Back</Link>
-                </Button>
-            )}
-
             {!loading && student && (
                 <Card style={{ backgroundColor: "#242424" }}>
                     <CardContent style={{ backgroundColor: "#242424" }}>

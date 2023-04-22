@@ -17,8 +17,8 @@ class CoursesView(RestViews.APIView):
         pagination = self.pagination_class()
         page = pagination.paginate_queryset(objects, request)
 
-        serializer = CourseSerializer(page, many = True, exclude_fields = ['students'])
-        return RestReponses.Response(serializer.data, status = status.HTTP_200_OK)
+        serializer = CourseSerializer(page, many = True, exclude_fields = ['students'], depth = 1)
+        return  pagination.get_paginated_response(serializer.data)
     
     
     def post(self, request):

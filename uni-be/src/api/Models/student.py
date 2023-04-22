@@ -9,7 +9,7 @@ class Student(models.Model):
     mail_address = models.CharField(max_length = 128)
     phone_number = models.CharField(max_length = 10)
     courses = models.ManyToManyField("Course", through = "StudentCourse")
-        
+
     class Meta:
         indexes = [
             models.Index(fields = ['id'], name = 'student_id_index')

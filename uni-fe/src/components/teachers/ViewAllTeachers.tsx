@@ -26,6 +26,7 @@ const ViewAllTeachers = () => {
     const [page, setPage] = useState(1)
     const [isLastPage, setIsLastPage] = useState(false)
 
+    const rowsPerPage = 10;
 
     useEffect(() => {
         setLoading(true);
@@ -73,7 +74,7 @@ const ViewAllTeachers = () => {
                             <TableBody>
                                 {teachers.map((teacher: Teacher, index) => (
                                     <TableRow key={teacher.id}>
-                                        <TableCell sx={{ color: "whitesmoke" }} align="center">{index + 1}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke" }} align="center">{(page - 1) * rowsPerPage + index + 1}</TableCell>
                                         <TableCell sx={{ color: "whitesmoke" }} align="center">
                                             <Link to={`/teachers/${teacher.id}`}>
                                                 {teacher.name}

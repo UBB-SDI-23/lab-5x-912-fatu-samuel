@@ -4,6 +4,7 @@ import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
 import SchoolIcon from '@mui/icons-material/School';
 import ClassIcon from '@mui/icons-material/Class';
+import CreateIcon from '@mui/icons-material/Create';
 
 export const AppMenu = () => {
 
@@ -44,6 +45,17 @@ export const AppMenu = () => {
                         startIcon={<ClassIcon />}>
                         Courses
                     </Button>
+
+                    <Button
+                        variant={path.startsWith("/enrollments") ? "outlined" : "text"}
+                        to="/enrollments"
+                        component={Link}
+                        color="inherit"
+                        sx={{ mr: 5, ":hover": { color: "#112350" } }}
+                        startIcon={<CreateIcon />}>
+                        Enrollments
+                    </Button>
+
 
                     <Button
                         variant={path.startsWith("/students/avg-fee") ? "outlined" : "text"}

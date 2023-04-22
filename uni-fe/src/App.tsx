@@ -19,6 +19,7 @@ import { ViewCourse } from './components/courses/ViewCourse';
 import { AddCourse } from './components/courses/AddCourse';
 import { DeleteCourse } from './components/courses/DeleteCourse';
 import { UpdateCourse } from './components/courses/UpdateCourse';
+import { ViewEnrollments } from './components/enrollment/ViewEnrollments';
 
 function App() {
 
@@ -51,6 +52,9 @@ function App() {
                     <Route path="/courses/:courseId" element={<ViewCourse />} />
                     <Route path="/courses/:courseId/update" element={<UpdateCourse />} />
                     <Route path="/courses/:courseId/delete" element={<DeleteCourse />} />
+
+
+                    <Route path="/enrollments" element={<ViewEnrollments />} />
 
                 </Routes>
             </Router>

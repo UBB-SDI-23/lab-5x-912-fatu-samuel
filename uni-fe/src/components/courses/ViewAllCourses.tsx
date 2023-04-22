@@ -16,7 +16,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../constants";
-import { Teacher } from "../../models/Teacher";
 import { Course } from "../../models/Course";
 
 

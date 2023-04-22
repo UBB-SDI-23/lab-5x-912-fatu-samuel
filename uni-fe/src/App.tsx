@@ -16,6 +16,9 @@ import { UpdateTeacher } from './components/teachers/UpdateTeacher';
 import { DeleteTeacher } from './components/teachers/DeleteTeacher';
 import { ViewAllCourses } from './components/courses/ViewAllCourses';
 import { ViewCourse } from './components/courses/ViewCourse';
+import { AddCourse } from './components/courses/AddCourse';
+import { DeleteCourse } from './components/courses/DeleteCourse';
+import { UpdateCourse } from './components/courses/UpdateCourse';
 
 function App() {
 
@@ -44,7 +47,10 @@ function App() {
                     <Route path="/teachers/:teacherId/delete" element={<DeleteTeacher />} />
 
                     <Route path="/courses" element={<ViewAllCourses />} />
+                    <Route path="/courses/add" element={<AddCourse />} />
                     <Route path="/courses/:courseId" element={<ViewCourse />} />
+                    <Route path="/courses/:courseId/update" element={<UpdateCourse />} />
+                    <Route path="/courses/:courseId/delete" element={<DeleteCourse />} />
 
                 </Routes>
             </Router>

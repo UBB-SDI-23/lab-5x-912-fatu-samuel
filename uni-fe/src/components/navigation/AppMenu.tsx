@@ -20,7 +20,7 @@ export const AppMenu = () => {
                         to="/students"
                         component={Link}
                         color="inherit"
-                        sx={{ mr: 5 }}
+                        sx={{ mr: 5, ":hover": { color: "#112350" } }}
                         startIcon={< SchoolIcon />}>
                         Students
                     </Button>
@@ -30,7 +30,7 @@ export const AppMenu = () => {
                         to="/teachers"
                         component={Link}
                         color="inherit"
-                        sx={{ mr: 5 }}
+                        sx={{ mr: 5, ":hover": { color: "#112350" } }}
                         startIcon={<LocalLibraryIcon />}>
                         Teachers
                     </Button>
@@ -40,7 +40,7 @@ export const AppMenu = () => {
                         to="/courses"
                         component={Link}
                         color="inherit"
-                        sx={{ mr: 5 }}
+                        sx={{ mr: 5, ":hover": { color: "#112350" } }}
                         startIcon={<ClassIcon />}>
                         Courses
                     </Button>
@@ -50,7 +50,7 @@ export const AppMenu = () => {
                         to="/students/avg-fee"
                         component={Link}
                         color="inherit"
-                        sx={{ mr: 5 }}
+                        sx={{ mr: 5, ":hover": { color: "#112350" } }}
                         startIcon={<BarChartOutlinedIcon />}>
                         Statistics
                     </Button>

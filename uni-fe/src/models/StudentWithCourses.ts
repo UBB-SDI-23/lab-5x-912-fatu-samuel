@@ -1,4 +1,4 @@
-import { BriefCourse } from "./BriefCourse";
+import { ExtraDetailsCourse } from "./ExtraDetailsCourse";
 
 export interface StudentWithCourses {
     id: number,
@@ -8,5 +8,5 @@ export interface StudentWithCourses {
     country: string,
     mail_address: string,
     phone_number: string,
-    courses: BriefCourse[],
+    courses: ExtraDetailsCourse[],
 }

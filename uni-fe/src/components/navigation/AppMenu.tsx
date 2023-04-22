@@ -1,8 +1,8 @@
 import { AppBar, Box, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import SchoolIcon from "@mui/icons-material/School";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
+import SchoolIcon from '@mui/icons-material/School';
 
 export const AppMenu = () => {
 
@@ -13,24 +13,24 @@ export const AppMenu = () => {
         <Box>
             <AppBar >
                 <Toolbar>
-                    <IconButton
-                        component={Link}
-                        to="/"
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="school"
-                        sx={{ mr: 2 }}>
-                        <SchoolIcon />
-                    </IconButton>
+
                     <Button
                         variant={path == "/students" ? "outlined" : "text"}
                         to="/students"
                         component={Link}
                         color="inherit"
                         sx={{ mr: 5 }}
-                        startIcon={<LocalLibraryIcon />}>
+                        startIcon={< SchoolIcon />}>
                         Students
+                    </Button>
+                    <Button
+                        variant={path == "/teachers" ? "outlined" : "text"}
+                        to="/teachers"
+                        component={Link}
+                        color="inherit"
+                        sx={{ mr: 5 }}
+                        startIcon={<LocalLibraryIcon />}>
+                        Teachers
                     </Button>
                     <Button
                         variant={path.startsWith("/students/avg-fee") ? "outlined" : "text"}

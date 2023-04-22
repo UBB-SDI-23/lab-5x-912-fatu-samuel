@@ -1,4 +1,6 @@
 import rest_framework.views as RestViews
+
+from api.pagination.DefaultPagination import DefaultPagination
 from ...Models.teacher import Teacher
 from django.db.models import Count
 import rest_framework.response as RestReponses
@@ -9,6 +11,7 @@ from ...Serializers.teacher import TeacherSerializer
 
 class TeacherCountCoursesView(RestViews.APIView):
     serializer_class = TeacherSerializer
+    pagination_class = DefaultPagination
 
     def get(self, request):
 
@@ -18,5 +21,8 @@ class TeacherCountCoursesView(RestViews.APIView):
             'count_courses'
         )
 
-        serializer = TeacherSerializer(teachers, many = True, exclude_fields = ['courses'])
-        return RestReponses.Response(serializer.data, status = status.HTTP_200_OK)
+        pagination = self.pagination_class()
+        page = pagination.paginate_queryset(teachers, request)
+
+        serializer = TeacherSerializer(page, many = True, exclude_fields = ['courses'])
+        return pagination.get_paginated_response(serializer.data)

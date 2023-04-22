@@ -1,4 +1,5 @@
 import rest_framework.views as RestViews
+
 from ...Models.course import Course
 from ...Models.student_course import StudentCourse
 from ...Serializers.course import CourseSerializer
@@ -8,16 +9,16 @@ import rest_framework.response as RestReponses
 
 
 class FullCourseView(RestViews.APIView):
-    serializer_class = CourseSerializer
+    serializer_class = CourseSerializer    
 
     def get(self, request, id):
         try:
-            object = Course.objects.get(id = id)
+            objects = Course.objects.get(id = id)
         except Course.DoesNotExist:
             message = {"msg": f"{Course.__name__} with ID = `{id}` does not exist!"}
             return RestReponses.Response(message, status = status.HTTP_404_NOT_FOUND)
 
-        serializer = CourseSerializer(object, depth = 1)
+        serializer = CourseSerializer(objects, depth = 1)
 
         data = serializer.data
         data['teacher'] = data['teacher']['id']

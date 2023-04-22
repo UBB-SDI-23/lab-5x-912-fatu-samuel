@@ -1,4 +1,6 @@
 import rest_framework.views as RestViews
+
+from api.pagination.DefaultPagination import DefaultPagination
 from ...Models.student import Student
 from ...Serializers.student import StudentSerializer
 from rest_framework import status
@@ -6,11 +8,16 @@ import rest_framework.response as RestReponses
 
 class StudentsView(RestViews.APIView):
     serializer_class = StudentSerializer
-
+    pagination_class = DefaultPagination
+    
     def get(self, request):
         objects = Student.objects.all()
-        serializer = StudentSerializer(objects, many = True, exclude_fields = ['courses'])
-        return RestReponses.Response(serializer.data, status = status.HTTP_200_OK)
+
+        pagination = self.pagination_class()
+        page = pagination.paginate_queryset(objects, request)
+
+        serializer = StudentSerializer(page, many = True, exclude_fields = ['courses'])
+        return pagination.get_paginated_response(serializer.data)
     
 
     def post(self, request):

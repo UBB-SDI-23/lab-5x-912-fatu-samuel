@@ -1,11 +1,35 @@
 import rest_framework.views as RestViews
+from api.Models.course import Course
+
+from api.pagination.DefaultPagination import DefaultPagination
 from ..Models.student_course import StudentCourse
+from ..Models.student import Student
 from ..Serializers.student_course import StudentCourseSerializer
 from rest_framework import status
 import rest_framework.response as RestReponses
 
 class StudentCourseView(RestViews.APIView):
     serializer_class = StudentCourseSerializer
+    pagination_class = DefaultPagination
+
+    def get(self, request):
+        objects = StudentCourse.objects.all()
+
+        pagination = self.pagination_class()
+        page = pagination.paginate_queryset(objects, request)
+
+        serializer = StudentCourseSerializer(page, many = True)
+        data = serializer.data
+
+        for enroll in data:
+            student = Student.objects.get(id = enroll["student"])
+            enroll["studentName"] = student.name
+
+            course = Course.objects.get(id = enroll["course"])
+            enroll["courseName"] = course.name  
+
+        return pagination.get_paginated_response(data)
+
 
     def update(self, request, id, partial = False):
         try:

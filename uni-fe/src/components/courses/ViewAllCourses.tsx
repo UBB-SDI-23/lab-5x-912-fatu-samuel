@@ -35,6 +35,13 @@ export const ViewAllCourses = () => {
             .then(res => res.json())
             .then(data => {
                 const { count, next, prev, results } = data;
+
+                // Check if the teacher is an integer or a dict object, if it is, call this function again
+                if (!(results[0].teacher && typeof results[0].teacher === 'object')) {
+                    setPage(page);
+                    return;
+                }
+
                 setIsLastPage(!next);
                 setCourses(results);
                 setLoading(false);

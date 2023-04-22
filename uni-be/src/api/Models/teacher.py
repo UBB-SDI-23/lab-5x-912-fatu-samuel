@@ -11,7 +11,8 @@ class Teacher(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields = ['id'], name = 'teacher_id_index')
+            models.Index(fields = ['id'], name = 'teacher_id_index'),
+            models.Index(fields = ['name'], name = 'teacher_name_index'),
         ]
 
     def __str__(self):

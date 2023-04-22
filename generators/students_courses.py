@@ -1,7 +1,7 @@
 ROWS_TO_GENERATE = 100000
 DATA_FOR_ROW_TO_GENERATE = 100
 ROWS_PER_BATCH = 10
-AMOUNT_OF_FILES = 4
+AMOUNT_OF_FILES = 1
 
 from faker import Faker
 
@@ -45,6 +45,10 @@ def generate():
 
 
 def generate_sql(data):
+
+    with open("students_courses_0.sql", "w") as file:
+        file.write("TRUNCATE TABLE api_studentcourse RESTART IDENTITY CASCADE;")
+
     sql = "INSERT INTO api_studentcourse (student_id, course_id, final_lab_score, final_exam_score) VALUES "
     i = 0
     file_index = 0

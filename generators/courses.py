@@ -48,6 +48,10 @@ def generate_courses(amount):
 
 
 def generate_sql(courses):
+
+    with open("courses.sql", "w") as file:
+        file.write("TRUNCATE TABLE api_course RESTART IDENTITY CASCADE;")
+
     sql = "INSERT INTO api_course (name, description, teacher_id, fee, size) VALUES "
     i = 0
     for course in courses:

@@ -42,6 +42,10 @@ def generate_students(amount):
 
 
 def generate_sql(students):
+
+    with open("students.sql", "w") as file:
+        file.write("TRUNCATE TABLE api_student RESTART IDENTITY CASCADE;")
+
     sql = "INSERT INTO api_student (name, cnp, date_of_birth, country, mail_address, phone_number) VALUES "
     i = 0
     for student in students:

@@ -13,3 +13,4 @@ generators/students.sql
 generators/delete_fks.sql
 generators/create_fks.sql
 generators/courses.sql
+uni-be/src/db.sqlite3

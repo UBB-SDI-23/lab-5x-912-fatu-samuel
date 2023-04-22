@@ -22,16 +22,23 @@ import { Teacher } from "../../models/Teacher";
 const ViewAllTeachers = () => {
 
     const [loading, setLoading] = useState(true)
-    const [teachers, setteachers] = useState([])
+    const [teachers, setTeachers] = useState([])
+    const [page, setPage] = useState(1)
+    const [isLastPage, setIsLastPage] = useState(false)
+
 
     useEffect(() => {
-        fetch(`${API_URL}/teachers/`)
+        setLoading(true);
+
+        fetch(`${API_URL}/teachers/?page=${page}`)
             .then(res => res.json())
             .then(data => {
-                setteachers(data);
+                const { count, next, prev, results } = data;
+                setIsLastPage(!next);
+                setTeachers(results);
                 setLoading(false);
             });
-    }, [])
+    }, [page])
 
     return (
         <Container>
@@ -50,53 +57,71 @@ const ViewAllTeachers = () => {
 
 
             {!loading && teachers.length > 0 && (
-                <TableContainer>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">#</TableCell>
-                                <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Name</TableCell>
-                                <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">CNP</TableCell>
-                                <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Phone number</TableCell>
-                                <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Operation</TableCell>
-                            </TableRow>
-                        </TableHead>
-
-                        <TableBody>
-                            {teachers.map((teacher: Teacher, index) => (
-                                <TableRow key={teacher.id}>
-                                    <TableCell sx={{ color: "whitesmoke" }} align="center">{index + 1}</TableCell>
-                                    <TableCell sx={{ color: "whitesmoke" }} align="center">
-                                        <Link to={`/teachers/${teacher.id}`}>
-                                            {teacher.name}
-                                        </Link>
-                                    </TableCell>
-                                    <TableCell sx={{ color: "whitesmoke" }} align="center">{teacher.cnp}</TableCell>
-                                    <TableCell sx={{ color: "whitesmoke" }} align="center">{teacher.phone_number}</TableCell>
-                                    <TableCell sx={{ color: "whitesmoke" }} align="center">
-                                        <IconButton
-                                            component={Link}
-                                            sx={{ mr: 3 }}
-                                            to={`/teachers/${teacher.id}`}>
-                                            <Tooltip title="View teacher details" arrow>
-                                                <ReadMoreIcon color="primary" />
-                                            </Tooltip>
-                                        </IconButton>
-
-                                        <IconButton component={Link} sx={{ mr: 3 }} to={`/teachers/${teacher.id}/update`}>
-                                            <EditIcon sx={{ color: "whitesmoke" }} />
-                                        </IconButton>
-
-                                        <IconButton component={Link} sx={{ mr: 3 }} to={`/teachers/${teacher.id}/delete`}>
-                                            <DeleteForeverIcon sx={{ color: "red" }} />
-                                        </IconButton>
-                                    </TableCell>
+                <>
+                    <TableContainer>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">#</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Name</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">CNP</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Phone number</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Operation</TableCell>
                                 </TableRow>
-                            ))}
+                            </TableHead>
 
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                            <TableBody>
+                                {teachers.map((teacher: Teacher, index) => (
+                                    <TableRow key={teacher.id}>
+                                        <TableCell sx={{ color: "whitesmoke" }} align="center">{index + 1}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke" }} align="center">
+                                            <Link to={`/teachers/${teacher.id}`}>
+                                                {teacher.name}
+                                            </Link>
+                                        </TableCell>
+                                        <TableCell sx={{ color: "whitesmoke" }} align="center">{teacher.cnp}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke" }} align="center">{teacher.phone_number}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke" }} align="center">
+                                            <IconButton
+                                                component={Link}
+                                                sx={{ mr: 3 }}
+                                                to={`/teachers/${teacher.id}`}>
+                                                <Tooltip title="View teacher details" arrow>
+                                                    <ReadMoreIcon color="primary" />
+                                                </Tooltip>
+                                            </IconButton>
+
+                                            <IconButton component={Link} sx={{ mr: 3 }} to={`/teachers/${teacher.id}/update`}>
+                                                <EditIcon sx={{ color: "whitesmoke" }} />
+                                            </IconButton>
+
+                                            <IconButton component={Link} sx={{ mr: 3 }} to={`/teachers/${teacher.id}/delete`}>
+                                                <DeleteForeverIcon sx={{ color: "red" }} />
+                                            </IconButton>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+
+                    <Button
+                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey" } }}
+                        onClick={() => setPage(page - 1)}
+                        disabled={page == 1}
+                    >
+                        Previous page
+                    </Button>
+
+                    <Button
+                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey" } }}
+                        onClick={() => setPage(page + 1)}
+                        disabled={isLastPage}
+                    >
+                        Next page
+                    </Button>
+                </>
             )}
 
 

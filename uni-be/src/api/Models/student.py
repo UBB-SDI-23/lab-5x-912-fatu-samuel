@@ -12,7 +12,8 @@ class Student(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields = ['id'], name = 'student_id_index')
+            models.Index(fields = ['id'], name = 'student_id_index'),
+            models.Index(fields = ['name'], name = 'student_name_index'),
         ]
 
     def __str__(self):

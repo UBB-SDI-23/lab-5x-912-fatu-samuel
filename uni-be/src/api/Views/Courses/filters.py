@@ -18,4 +18,12 @@ class CourseFilterView(RestViews.APIView):
 
         courses = Course.objects.filter(id__in = page, fee__gte = fee)
         serializer = CourseSerializer(courses, exclude_fields = ['students', 'teacher'], many = True)
-        return pagination.get_paginated_response(serializer.data)
+        return RestReponses.Response(
+            {
+                "count": courses.count(),
+                "next": pagination.get_next_link(),
+                "previous": pagination.get_previous_link(),
+                "results": serializer.data
+            }, 
+            status = status.HTTP_200_OK
+        )

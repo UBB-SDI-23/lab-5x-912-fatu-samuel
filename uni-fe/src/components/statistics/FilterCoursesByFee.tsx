@@ -90,7 +90,11 @@ export const FilterCoursesByFee = () => {
                 <Button
                     variant="contained"
                     sx={{ mt: 1 }}
-                    onClick={() => fetchCourses()}>
+                    onClick={() => {
+                        fetchCourses()
+                        setPage(1);
+                    }
+                    }>
                     Filter
                 </Button>
             </Container>

@@ -80,12 +80,12 @@ export const ViewEnrollments = () => {
                                         </TableCell>
                                         <TableCell sx={{ color: "whitesmoke" }} align="center">
                                             <Link to={`/students/${enrollment.student}`}>
-                                                {enrollment.studentName}
+                                                {enrollment.student.name}
                                             </Link>
                                         </TableCell>
                                         <TableCell sx={{ color: "whitesmoke" }} align="center">
                                             <Link to={`/courses/${enrollment.course}`}>
-                                                {enrollment.courseName}
+                                                {enrollment.course.name}
                                             </Link>
                                         </TableCell>
                                         <TableCell sx={{ color: "whitesmoke" }} align="center">

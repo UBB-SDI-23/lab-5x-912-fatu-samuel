@@ -55,12 +55,12 @@ const ViewStudent = () => {
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Student</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{enroll?.studentName}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{enroll?.student.name}</TableCell>
                                     </TableRow>
 
                                     <TableRow>
                                         <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">Course</TableCell>
-                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{enroll?.courseName}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="left">{enroll?.course.name}</TableCell>
                                     </TableRow>
 
                                     <TableRow>

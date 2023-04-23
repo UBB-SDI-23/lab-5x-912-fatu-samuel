@@ -65,7 +65,7 @@ export const ViewEnrollments = () => {
                                 <TableRow>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">#</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Student</TableCell>
-                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Teacher</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Course</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Operation</TableCell>
                                 </TableRow>
                             </TableHead>

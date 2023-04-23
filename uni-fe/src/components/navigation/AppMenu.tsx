@@ -58,8 +58,8 @@ export const AppMenu = () => {
 
 
                     <Button
-                        variant={path.startsWith("/students/avg-fee") ? "outlined" : "text"}
-                        to="/students/avg-fee"
+                        variant={path.startsWith("/statistics") ? "outlined" : "text"}
+                        to="/statistics"
                         component={Link}
                         color="inherit"
                         sx={{ mr: 5, ":hover": { color: "#112350" } }}

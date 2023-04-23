@@ -7,7 +7,7 @@ import AddStudent from './components/students/AddStudent';
 import { AppHome } from './components/home/AppHome';
 import { DeleteStudent } from './components/students/DeleteStudent';
 import { UpdateStudent } from './components/students/UpdateStudent';
-import ViewStudentsAvgFee from './components/students/ViewStudentsAvgFee';
+import ViewStudentsAvgFee from './components/statistics/ViewStudentsAvgFee';
 import { AppMenu } from './components/navigation/AppMenu';
 import ViewAllTeachers from './components/teachers/ViewAllTeachers';
 import AddTeacher from './components/teachers/AddTeacher';
@@ -24,6 +24,9 @@ import { AddEnroll } from './components/enrollment/AddEnroll';
 import { DeleteEnroll } from './components/enrollment/DeleteEnroll';
 import ViewEnroll from './components/enrollment/ViewEnroll';
 import { UpdateEnroll } from './components/enrollment/UpdateEnroll';
+import ViewStatistics from './components/statistics/ViewStatistics';
+import { ViewTeachersWCourses } from './components/statistics/ViewTeachersWCourses';
+import { FilterCoursesByFee } from './components/statistics/FilterCoursesByFee';
 
 function App() {
 
@@ -42,7 +45,10 @@ function App() {
                     <Route path="/students/:studentId/update" element={<UpdateStudent />} />
                     <Route path="/students/:studentId/delete" element={<DeleteStudent />} />
 
-                    <Route path="/students/avg-fee" element={<ViewStudentsAvgFee />} />
+                    <Route path="/statistics" element={<ViewStatistics />} />
+                    <Route path="/statistics/avg-fee" element={<ViewStudentsAvgFee />} />
+                    <Route path="/statistics/teachers" element={<ViewTeachersWCourses />} />
+                    <Route path="/statistics/filter-fee" element={<FilterCoursesByFee />} />
 
 
                     <Route path="/teachers" element={<ViewAllTeachers />} />

@@ -1,5 +1,7 @@
 import rest_framework.views as RestViews
 from api.Models.course import Course
+from api.Serializers.course import CourseSerializer
+from api.Serializers.student import StudentSerializer
 
 from api.pagination.DefaultPagination import DefaultPagination
 from api.Models.student_course import StudentCourse
@@ -22,11 +24,8 @@ class StudentCourseView(RestViews.APIView):
         data = serializer.data
 
         for enroll in data:
-            student = Student.objects.get(id = enroll["student"])
-            enroll["studentName"] = student.name
-
-            course = Course.objects.get(id = enroll["course"])
-            enroll["courseName"] = course.name  
+            enroll["student"] = StudentSerializer(Student.objects.get(id = enroll["student"]), exclude_fields = ["courses"]).data
+            enroll["course"] = CourseSerializer(Course.objects.get(id = enroll["course"]), exclude_fields = ['students']).data
 
         return pagination.get_paginated_response(data)
 

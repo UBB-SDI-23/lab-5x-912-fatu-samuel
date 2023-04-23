@@ -25,7 +25,6 @@ class SpecificStudentCourseView(RestViews.APIView):
         serializer = StudentCourseSerializer(object)
         data = serializer.data
 
-
         student = StudentSerializer(Student.objects.get(id = int(data["student"])), exclude_fields = ['courses']).data
         data["student"] = student
 

@@ -7,20 +7,20 @@ import { Link } from "react-router-dom";
 import '../../App.css';
 import { API_URL } from "../../constants";
 import { debounce } from "lodash";
-import { TeacherWithName } from "../../models/TeacherWithName";
+import { Teacher } from "../../models/Teacher";
 
 export const UpdateCourse = () => {
 
     const navigate = useNavigate();
     const { courseId } = useParams();
     const [loading, setLoading] = useState(true)
-    const [teachers, setTeachers] = useState<TeacherWithName[]>([]);
+    const [teachers, setTeachers] = useState<Teacher[]>([]);
     const [course, setCourse] = useState({
         "name": '',
         "description": '',
         "fee": 0,
         "size": 0,
-        "teacher": {} as TeacherWithName
+        "teacher": {} as Teacher
     });
 
     useEffect(() => {
@@ -124,15 +124,16 @@ export const UpdateCourse = () => {
                                 value={course.teacher}
                                 options={teachers}
                                 renderInput={(params) => <TextField {...params} label="Teacher" variant="outlined" />}
-                                getOptionLabel={(option) => option.name}
+                                getOptionLabel={(option) => `${option.name} - ${option.cnp}`}
                                 onInputChange={(event, value, reason) => debounceTeachers(value)}
                                 onChange={(event, value) => {
                                     if (value) {
                                         setCourse({
                                             ...course, teacher: {
                                                 id: value.id,
-                                                name: value.name
-                                            } as TeacherWithName
+                                                name: value.name,
+                                                cnp: value.cnp
+                                            } as Teacher
                                         })
                                     }
                                 }}

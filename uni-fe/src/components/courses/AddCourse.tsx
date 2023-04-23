@@ -95,7 +95,7 @@ export const AddCourse = () => {
                             id="teacher"
                             options={teachers}
                             renderInput={(params) => <TextField {...params} label="Teacher" variant="outlined" />}
-                            getOptionLabel={(option) => option.name}
+                            getOptionLabel={(option) => `${option.name} - ${option.cnp}`}
                             onInputChange={(event, value, reason) => debounceTeachers(value)}
                             onChange={(event, value) => {
                                 if (value) {

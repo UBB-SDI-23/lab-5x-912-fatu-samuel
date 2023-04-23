@@ -108,7 +108,7 @@ const ViewAllTeachers = () => {
                     </TableContainer>
 
                     <Button
-                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey" } }}
+                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey !important" } }}
                         onClick={() => setPage(page - 1)}
                         disabled={page == 1}
                     >
@@ -116,7 +116,7 @@ const ViewAllTeachers = () => {
                     </Button>
 
                     <Button
-                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey" } }}
+                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey !important" } }}
                         onClick={() => setPage(page + 1)}
                         disabled={isLastPage}
                     >

@@ -110,7 +110,7 @@ export const ViewAllCourses = () => {
                     </TableContainer>
 
                     <Button
-                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey" } }}
+                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey !important" } }}
                         onClick={() => setPage(page - 1)}
                         disabled={page == 1}
                     >
@@ -118,7 +118,7 @@ export const ViewAllCourses = () => {
                     </Button>
 
                     <Button
-                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey" } }}
+                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey !important" } }}
                         onClick={() => setPage(page + 1)}
                         disabled={isLastPage}
                     >

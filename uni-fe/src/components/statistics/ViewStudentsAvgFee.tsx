@@ -25,10 +25,16 @@ const ViewStudentsAvgFee = () => {
     const [page, setPage] = useState(1)
     const [isLastPage, setIsLastPage] = useState(false)
     const [totalRows, setTotalRows] = useState(0)
+    const [count, setCount] = useState(0)
 
     const rowsPerPage = 10;
 
     useEffect(() => {
+
+        if (count > 0) {
+            return;
+        }
+        setCount(2);
         setLoading(true);
 
         fetch(`${API_URL}/students/avg-fee/?page=${page}`)

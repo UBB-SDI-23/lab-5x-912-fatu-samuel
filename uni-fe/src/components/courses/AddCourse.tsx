@@ -8,6 +8,9 @@ import '../../App.css';
 import { API_URL } from "../../constants";
 import { Teacher } from "../../models/Teacher";
 import { debounce } from "lodash";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const AddCourse = () => {
 
@@ -39,14 +42,31 @@ export const AddCourse = () => {
     const addStudent = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
+        let errored: Boolean = false;
+        if (course.fee < 0) {
+            toast.error("Fee must be a positive number");
+            errored = true;
+        }
+
+        if (course.size < 0) {
+            toast.error("Size must be a positive number");
+            errored = true;
+        }
+
+        if (errored) {
+            return;
+        }
+
         try {
             await axios.post(`${API_URL}/courses/`, course);
             navigate('/courses');
         }
-        catch (error) {
-            console.log(error);
+        catch (error: any) {
+            const errors = error.response.data.message;
+            for (const key in errors) {
+                toast.error(`${key}: ${errors[key]}`);
+            }
         }
-
     }
 
     return (
@@ -102,9 +122,9 @@ export const AddCourse = () => {
                                     setCourse({ ...course, teacher: value.id })
                                 }
                             }}
-
                         />
 
+                        <ToastContainer />
                         <Button type="submit">Add Course</Button>
                     </form>
 

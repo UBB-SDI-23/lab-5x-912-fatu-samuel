@@ -6,6 +6,8 @@ import { Container } from "@mui/system";
 import { Link } from "react-router-dom";
 import '../../App.css';
 import { API_URL } from "../../constants";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddStudent = () => {
 
@@ -27,12 +29,30 @@ const AddStudent = () => {
     const addStudent = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
+        let errored: Boolean = false;
+        if (!student.mail_address.includes("@")) {
+            toast.error("Mail address must contain @");
+            errored = true;
+        }
+
+        if (`${student.cnp}`.length !== 13) {
+            toast.error("Cnp must have 13 digits and start with 1, 2, 5 or 6");
+            errored = true;
+        }
+
+        if (errored) {
+            return;
+        }
+
         try {
             await axios.post(`${API_URL}/students/`, student);
             navigate('/students');
         }
-        catch (error) {
-            console.log(error);
+        catch (error: any) {
+            const errors = error.response.data.message;
+            for (const key in errors) {
+                toast.error(`${key}: ${errors[key]}`);
+            }
         }
 
     }
@@ -94,6 +114,8 @@ const AddStudent = () => {
                             sx={{ mb: 2, color: "whitesmoke !important" }}
                             onChange={(event) => setStudent({ ...student, phone_number: event.target.value })}
                         />
+                        <ToastContainer />
+
                         <Button type="submit">Add Student</Button>
                     </form>
 

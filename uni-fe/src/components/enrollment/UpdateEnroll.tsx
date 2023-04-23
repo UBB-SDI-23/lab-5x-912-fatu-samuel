@@ -17,6 +17,8 @@ import { Enrollment } from "../../models/Enrollment";
 import { Student } from "../../models/Student";
 import { Course } from "../../models/Course";
 import { debounce } from "lodash";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const UpdateEnroll = () => {
 
@@ -52,8 +54,11 @@ export const UpdateEnroll = () => {
             });
             navigate('/enrollments');
         }
-        catch (error) {
-            console.log(error);
+        catch (error: any) {
+            const errors = error.response.data.message;
+            for (const key in errors) {
+                toast.error(`${key}: ${errors[key]}`);
+            }
         }
     }
 
@@ -119,6 +124,7 @@ export const UpdateEnroll = () => {
                                 sx={{ mb: 2, color: "whitesmoke" }}
                                 onChange={(event) => setEnroll({ ...enroll, final_exam_score: Number(event.target.value) })}
                             />
+                            <ToastContainer />
 
                             <Button type="submit" sx={{ backgroundColor: '#242424' }}>Update Enrollment</Button>
                         </form>

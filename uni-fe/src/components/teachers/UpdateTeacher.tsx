@@ -13,6 +13,8 @@ import { Container } from "@mui/system";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../constants";
 import { Teacher } from "../../models/Teacher";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const UpdateTeacher = () => {
 
@@ -41,12 +43,20 @@ export const UpdateTeacher = () => {
     const updateTeacher = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
+        if (!teacher.mail_address.includes("@")) {
+            toast.error("Mail address must contain @");
+            return;
+        }
+
         try {
             await axios.put(`${API_URL}/teachers/${teacherId}/`, teacher);
             navigate('/teachers');
         }
-        catch (error) {
-            console.log(error);
+        catch (error: any) {
+            const errors = error.response.data.message;
+            for (const key in errors) {
+                toast.error(`${key}: ${errors[key]}`);
+            }
         }
     }
 
@@ -121,6 +131,9 @@ export const UpdateTeacher = () => {
                                 sx={{ mb: 2, color: "whitesmoke" }}
                                 onChange={(event) => setTeacher({ ...teacher, description: event.target.value })}
                             />
+
+                            <ToastContainer />
+
                             <Button type="submit" sx={{ backgroundColor: '#242424' }}>Update Teacher</Button>
                         </form>
 

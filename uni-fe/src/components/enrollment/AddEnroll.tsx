@@ -9,6 +9,8 @@ import { API_URL } from "../../constants";
 import { debounce } from "lodash";
 import { Student } from "../../models/Student";
 import { Course } from "../../models/Course";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AddEnroll = () => {
 
@@ -52,8 +54,11 @@ export const AddEnroll = () => {
             await axios.post(`${API_URL}/enroll/`, enrollData);
             navigate('/enrollments');
         }
-        catch (error) {
-            console.log(error);
+        catch (error: any) {
+            const errors = error.response.data.message;
+            for (const key in errors) {
+                toast.error(`${key}: ${errors[key]}`);
+            }
         }
 
     }
@@ -96,6 +101,7 @@ export const AddEnroll = () => {
                             }}
                             sx={{ mb: 3 }}
                         />
+                        <ToastContainer />
 
                         <Button type="submit">Enroll</Button>
                     </form>

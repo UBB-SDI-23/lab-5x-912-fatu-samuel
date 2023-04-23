@@ -6,6 +6,8 @@ import { Container } from "@mui/system";
 import { Link } from "react-router-dom";
 import '../../App.css';
 import { API_URL } from "../../constants";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddTeacher = () => {
 
@@ -26,12 +28,21 @@ const AddTeacher = () => {
     const addTeacher = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
+        if (!teacher.mail_address.includes("@")) {
+            toast.error("Mail address must contain @");
+            return;
+        }
+
         try {
             await axios.post(`${API_URL}/teachers/`, teacher);
             navigate('/teachers');
         }
-        catch (error) {
+        catch (error: any) {
             console.log(error);
+            const errors = error.response.data.message;
+            for (const key in errors) {
+                toast.error(`${key}: ${errors[key]}`);
+            }
         }
 
     }
@@ -93,6 +104,8 @@ const AddTeacher = () => {
                             sx={{ mb: 2, color: "whitesmoke !important" }}
                             onChange={(event) => setTeacher({ ...teacher, description: event.target.value })}
                         />
+                        <ToastContainer />
+
                         <Button type="submit">Add Teacher</Button>
                     </form>
 

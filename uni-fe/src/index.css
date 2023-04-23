@@ -90,16 +90,8 @@ button:focus-visible {
   background-color: #242424  !important;
 }
 
-.pagination button :disabled {
-  color: #000000 !important;
-}
-
-.pagination button.active {
-  border: whitesmoke solid 2px;
-}
-
 .page-input {
-  max-width: 30px;
+  max-width: 50px;
   text-align: center;
   padding-top: 5px;
 }

@@ -76,6 +76,36 @@ button:focus-visible {
   color: whitesmoke;
 }
 
-:disabled {
-  color: whitesmoke !important;
+
+.pagination {
+  display: inline-block;
+  margin-top: 3px;
+}
+
+.pagination .floating {
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin-right: 2px;
+  background-color: #242424  !important;
+}
+
+.pagination button :disabled {
+  color: #000000 !important;
+}
+
+.pagination button.active {
+  border: whitesmoke solid 2px;
+}
+
+.page-input {
+  max-width: 30px;
+  text-align: center;
+  padding-top: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

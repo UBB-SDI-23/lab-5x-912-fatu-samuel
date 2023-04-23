@@ -17,6 +17,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../constants";
 import { Teacher } from "../../models/Teacher";
+import { Paginator } from "../ui-components/Pagination";
 
 
 const ViewAllTeachers = () => {
@@ -25,6 +26,7 @@ const ViewAllTeachers = () => {
     const [teachers, setTeachers] = useState([])
     const [page, setPage] = useState(1)
     const [isLastPage, setIsLastPage] = useState(false)
+    const [totalRows, setTotalRows] = useState(0)
 
     const rowsPerPage = 10;
 
@@ -36,10 +38,31 @@ const ViewAllTeachers = () => {
             .then(data => {
                 const { count, next, prev, results } = data;
                 setIsLastPage(!next);
+                setTotalRows(count);
                 setTeachers(results);
                 setLoading(false);
             });
     }, [page])
+
+    const setCurrentPage = (newPage: number) => {
+        setPage(newPage);
+    }
+
+    const goToNextPage = () => {
+        if (isLastPage) {
+            return;
+        }
+
+        setPage(page + 1);
+    }
+
+    const goToPrevPage = () => {
+        if (page === 1) {
+            return;
+        }
+
+        setPage(page - 1);
+    }
 
     return (
         <Container>
@@ -109,21 +132,16 @@ const ViewAllTeachers = () => {
                         </Table>
                     </TableContainer>
 
-                    <Button
-                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey !important" } }}
-                        onClick={() => setPage(page - 1)}
-                        disabled={page == 1}
-                    >
-                        Previous page
-                    </Button>
-
-                    <Button
-                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey !important" } }}
-                        onClick={() => setPage(page + 1)}
-                        disabled={isLastPage}
-                    >
-                        Next page
-                    </Button>
+                    <Paginator
+                        rowsPerPage={rowsPerPage}
+                        totalRows={totalRows}
+                        currentPage={page}
+                        isFirstPage={page === 1}
+                        isLastPage={isLastPage}
+                        setPage={setCurrentPage}
+                        goToNextPage={goToNextPage}
+                        goToPrevPage={goToPrevPage}
+                    />
                 </>
             )}
 

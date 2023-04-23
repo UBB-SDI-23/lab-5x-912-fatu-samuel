@@ -20,6 +20,10 @@ import { AddCourse } from './components/courses/AddCourse';
 import { DeleteCourse } from './components/courses/DeleteCourse';
 import { UpdateCourse } from './components/courses/UpdateCourse';
 import { ViewEnrollments } from './components/enrollment/ViewEnrollments';
+import { AddEnroll } from './components/enrollment/AddEnroll';
+import { DeleteEnroll } from './components/enrollment/DeleteEnroll';
+import ViewEnroll from './components/enrollment/ViewEnroll';
+import { UpdateEnroll } from './components/enrollment/UpdateEnroll';
 
 function App() {
 
@@ -55,6 +59,10 @@ function App() {
 
 
                     <Route path="/enrollments" element={<ViewEnrollments />} />
+                    <Route path="/enrollments/add" element={<AddEnroll />} />
+                    <Route path="/enrollments/:enrollId" element={<ViewEnroll />} />
+                    <Route path="/enrollments/:enrollId/delete" element={<DeleteEnroll />} />
+                    <Route path="/enrollments/:enrollId/update" element={<UpdateEnroll />} />
 
                 </Routes>
             </Router>

@@ -16,7 +16,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../constants";
-import { Course } from "../../models/Course";
 import { Enrollment } from "../../models/Enrollment";
 
 
@@ -65,7 +64,7 @@ export const ViewEnrollments = () => {
                             <TableHead>
                                 <TableRow>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">#</TableCell>
-                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Name</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Student</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Teacher</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Operation</TableCell>
                                 </TableRow>
@@ -115,7 +114,7 @@ export const ViewEnrollments = () => {
                     </TableContainer>
 
                     <Button
-                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey" } }}
+                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey !important" } }}
                         onClick={() => setPage(page - 1)}
                         disabled={page == 1}
                     >
@@ -123,7 +122,7 @@ export const ViewEnrollments = () => {
                     </Button>
 
                     <Button
-                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey" } }}
+                        sx={{ color: "whitesmoke", mr: 2, ":disabled": { color: "grey !important" } }}
                         onClick={() => setPage(page + 1)}
                         disabled={isLastPage}
                     >

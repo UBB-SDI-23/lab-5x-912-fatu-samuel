@@ -1,9 +1,14 @@
+import { Course } from "./Course";
+import { Student } from "./Student";
+
 export interface Enrollment {
     id: number;
     student: number;
     course: number;
     studentName: string;
     courseName: string;
-    lab_final_score: number;
-    exam_final_score: number;
+    final_lab_score: number;
+    final_exam_score: number;
+    full_student: Student;
+    full_course: Course;
 }

@@ -18,7 +18,8 @@ class TeachersView(RestViews.APIView):
         pagination = self.pagination_class()
         page = pagination.paginate_queryset(objects, request)
 
-        serializer = TeacherSerializer(page, many = True, exclude_fields = ['courses'])
+        objects = Teacher.objects.filter(id__in = [course.id for course in page]).annotate(courses_count = Count('courses'))
+        serializer = TeacherSerializer(objects, many = True, exclude_fields = ['courses'])
         return pagination.get_paginated_response(serializer.data)
     
 

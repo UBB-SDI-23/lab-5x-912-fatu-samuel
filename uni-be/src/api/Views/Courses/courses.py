@@ -12,12 +12,13 @@ class CoursesView(RestViews.APIView):
     pagination_class = DefaultPagination
 
     def get(self, request):
-        objects = Course.objects.all().annotate(students_count = Count('students'))
+        objects = Course.objects.all()
 
         pagination = self.pagination_class()
         page = pagination.paginate_queryset(objects, request)
 
-        serializer = CourseSerializer(page, many = True, exclude_fields = ['students'], depth = 1)
+        objects = Course.objects.filter(id__in = [course.id for course in page]).annotate(students_count = Count('students'))
+        serializer = CourseSerializer(objects, many = True, exclude_fields = ['students'], depth = 1)
         return  pagination.get_paginated_response(serializer.data)
     
     

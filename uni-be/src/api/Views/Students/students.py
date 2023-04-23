@@ -12,7 +12,7 @@ class StudentsView(RestViews.APIView):
     pagination_class = DefaultPagination
     
     def get(self, request):
-        objects = Student.objects.all().annotate(courses_count = Count('courses'))
+        objects = Student.objects.all()
 
         pagination = self.pagination_class()
         page = pagination.paginate_queryset(objects, request)

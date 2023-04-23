@@ -1,34 +1,38 @@
 import rest_framework.views as RestViews
 from api.Models.course import Course
+from api.Serializers.student import StudentSerializer
+from api.Serializers.course import CourseSerializer
 
 from api.pagination.DefaultPagination import DefaultPagination
-from ..Models.student_course import StudentCourse
-from ..Models.student import Student
-from ..Serializers.student_course import StudentCourseSerializer
+from api.Models.student_course import StudentCourse
+from api.Models.student import Student
+from api.Serializers.student_course import StudentCourseSerializer
 from rest_framework import status
 import rest_framework.response as RestReponses
 
-class StudentCourseView(RestViews.APIView):
+class SpecificStudentCourseView(RestViews.APIView):
     serializer_class = StudentCourseSerializer
     pagination_class = DefaultPagination
 
-    def get(self, request):
-        objects = StudentCourse.objects.all()
+    def get(self, request, id):
 
-        pagination = self.pagination_class()
-        page = pagination.paginate_queryset(objects, request)
+        try:
+            object = StudentCourse.objects.get(id = id)
+        except StudentCourse.DoesNotExist:
+            message = {"msg": f"{StudentCourse.__name__} with ID = `{id}` does not exist!"}
+            return RestReponses.Response(message, status = status.HTTP_404_NOT_FOUND)
 
-        serializer = StudentCourseSerializer(page, many = True)
+        serializer = StudentCourseSerializer(object)
         data = serializer.data
 
-        for enroll in data:
-            student = Student.objects.get(id = enroll["student"])
-            enroll["studentName"] = student.name
 
-            course = Course.objects.get(id = enroll["course"])
-            enroll["courseName"] = course.name  
+        student = StudentSerializer(Student.objects.get(id = int(data["student"])), exclude_fields = ['courses']).data
+        data["student"] = student
 
-        return pagination.get_paginated_response(data)
+        course = CourseSerializer(Course.objects.get(id = int(data["course"])), exclude_fields = ['students']).data
+        data["course"] = course  
+
+        return RestReponses.Response(data, status = status.HTTP_200_OK)
 
 
     def update(self, request, id, partial = False):
@@ -58,21 +62,6 @@ class StudentCourseView(RestViews.APIView):
     def patch(self, request, id):
         return self.update(request, id, partial = True)
 
-
-    def post(self, request):
-        serializer = StudentCourseSerializer(data = request.data)
-        
-        if not serializer.is_valid():
-            error_message = {}
-            for error in serializer.errors:
-                error_message[error] = f"{serializer.errors[error][0]}"
-
-            return RestReponses.Response({"message": error_message}, status = status.HTTP_400_BAD_REQUEST)
-        
-        serializer.save()
-        return RestReponses.Response(serializer.data, status = status.HTTP_201_CREATED)
-    
-    
     def delete(self, request, id):
         try:
             object = StudentCourse.objects.get(id = id)

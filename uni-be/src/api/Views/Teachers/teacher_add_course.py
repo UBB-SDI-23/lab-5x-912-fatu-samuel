@@ -18,8 +18,6 @@ class TeacherCoursesAddView(RestViews.APIView):
             message = {"msg": f"{Teacher.__name__} with ID = `{id}` does not exist!"}
             return RestReponses.Response(message, status = status.HTTP_404_NOT_FOUND)
 
-        # TODO validate serializer
-        # TODO make it efficient
         courses = request.data
         errors = ""
         for course_data in courses:

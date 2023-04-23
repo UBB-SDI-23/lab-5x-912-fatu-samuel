@@ -16,10 +16,10 @@ class TeacherCountCoursesView(RestViews.APIView):
     def get(self, request):
 
         teachers = Teacher.objects.annotate(
-            count_courses = Count('courses')
+            courses_count = Count('courses')
         ).order_by(
-            'count_courses'
-        )
+            'courses_count'
+        ).reverse()
 
         pagination = self.pagination_class()
         page = pagination.paginate_queryset(teachers, request)

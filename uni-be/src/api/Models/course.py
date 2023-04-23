@@ -14,7 +14,8 @@ class Course(models.Model):
         indexes = [
             models.Index(fields = ['teacher'], name = 'course_teacher_index'),
             models.Index(fields = ['id'], name = 'course_id_index'),
-            models.Index(fields = ['name'], name = 'course_name_index')
+            models.Index(fields = ['name'], name = 'course_name_index'),
+            models.Index(fields = ['fee'], name = 'course_fee_index')
         ]
 
     def __str__(self):

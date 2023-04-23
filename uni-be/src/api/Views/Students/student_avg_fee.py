@@ -4,8 +4,6 @@ from api.pagination.DefaultPagination import DefaultPagination
 from ...Models.student import Student
 from ...Serializers.student import StudentSerializer
 from django.db.models import Avg
-import rest_framework.response as RestReponses
-from rest_framework import status
 
 
 class StudentAvgFeeView(RestViews.APIView):
@@ -14,14 +12,18 @@ class StudentAvgFeeView(RestViews.APIView):
 
     def get(self, request):
 
-        students = Student.objects.annotate(
+        students = Student.objects.all().values_list('id', flat = True)
+
+        pagination = self.pagination_class()
+        page = pagination.paginate_queryset(students, request)
+
+        students = Student.objects.filter(
+            id__in = page
+        ).annotate(
             avg_fee = Avg('course__fee')
         ).order_by(
             'avg_fee'
         ).reverse()
 
-        pagination = self.pagination_class()
-        page = pagination.paginate_queryset(students, request)
-
-        serializer = StudentSerializer(page, many = True, exclude_fields = ['courses'])
+        serializer = StudentSerializer(students, many = True, exclude_fields = ['courses'])
         return pagination.get_paginated_response(serializer.data)

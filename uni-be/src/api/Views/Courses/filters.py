@@ -11,11 +11,11 @@ class CourseFilterView(RestViews.APIView):
     pagination_class = DefaultPagination
 
     def get(self, request, fee: int):
-        courses = Course.objects.all()
+        courses = Course.objects.all().values_list('id', flat = True)
 
         pagination = self.pagination_class()
         page = pagination.paginate_queryset(courses, request)
 
-        courses = Course.objects.filter(id__in = [course.id for course in page], fee__gte = fee)
+        courses = Course.objects.filter(id__in = page, fee__gte = fee)
         serializer = CourseSerializer(courses, exclude_fields = ['students', 'teacher'], many = True)
         return pagination.get_paginated_response(serializer.data)

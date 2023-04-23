@@ -8,5 +8,6 @@ export interface Course {
     fee: number,
     size: number,
     teacher: TeacherWithName,
-    students: StudentWithName[]
+    students: StudentWithName[],
+    students_count: number,
 }

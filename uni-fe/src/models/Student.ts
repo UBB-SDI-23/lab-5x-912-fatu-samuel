@@ -6,5 +6,6 @@ export interface Student {
     city: string,
     mail_address: string,
     phone_number: string,
-    courses: number[]
+    courses: number[],
+    courses_count: number,
 }

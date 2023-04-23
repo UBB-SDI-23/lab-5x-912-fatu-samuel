@@ -66,6 +66,7 @@ export const ViewAllCourses = () => {
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">#</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Name</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Teacher</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center"># Students</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Operation</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -84,6 +85,7 @@ export const ViewAllCourses = () => {
                                                 {course.teacher.name}
                                             </Link>
                                         </TableCell>
+                                        <TableCell sx={{ color: "whitesmoke" }} align="center">{course.students_count}</TableCell>
                                         <TableCell sx={{ color: "whitesmoke" }} align="center">
                                             <IconButton
                                                 component={Link}

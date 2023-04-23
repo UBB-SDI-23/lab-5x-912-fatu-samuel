@@ -5,5 +5,6 @@ export interface Teacher {
     date_of_birth: string,
     phone_number: string,
     mail_address: string,
-    description: string
+    description: string,
+    courses_count: number,
 }

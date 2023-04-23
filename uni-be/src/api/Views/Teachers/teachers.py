@@ -1,5 +1,6 @@
 import rest_framework.views as RestViews
 
+from django.db.models import Count
 from api.pagination.DefaultPagination import DefaultPagination
 from ...Models.teacher import Teacher
 from ...Serializers.teacher import TeacherSerializer
@@ -12,7 +13,7 @@ class TeachersView(RestViews.APIView):
     pagination_class = DefaultPagination
 
     def get(self, request):
-        objects = Teacher.objects.all()
+        objects = Teacher.objects.all().annotate(courses_count = Count('courses'))
 
         pagination = self.pagination_class()
         page = pagination.paginate_queryset(objects, request)

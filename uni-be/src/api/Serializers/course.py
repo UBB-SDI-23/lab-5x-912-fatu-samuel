@@ -9,7 +9,7 @@ class CourseSerializer(DynamicFieldsModelSerializer):
     fee = serializers.IntegerField()
     size = serializers.IntegerField()
     teacher = Teacher()
-    
+    students_count = serializers.IntegerField(read_only = True)
     
     def validate_fee(self, value):
         if value < 0:

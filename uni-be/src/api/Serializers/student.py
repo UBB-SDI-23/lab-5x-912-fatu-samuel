@@ -23,10 +23,6 @@ class StudentSerializer(DynamicFieldsModelSerializer):
     def validate_cnp(self, value):
         if len(f'{value}') != 13:
             raise serializers.ValidationError("CNP must contain 13 digits")
-        
-        if str(value)[0] not in ['1', '2', '5', '6']:
-            raise serializers.ValidationError("CNP must start with 1, 2, 5 or 6")
-
         return value
 
     class Meta:

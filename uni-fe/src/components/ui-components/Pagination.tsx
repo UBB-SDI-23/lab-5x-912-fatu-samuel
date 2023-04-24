@@ -15,9 +15,10 @@ interface PaginatorProps {
 export const Paginator = ({ rowsPerPage, totalRows, currentPage, isFirstPage, isLastPage, setPage, goToNextPage, goToPrevPage }: PaginatorProps) => {
 
     const totalPages = Math.ceil(totalRows / rowsPerPage);
-    const hardPagesFirst = [1, 2]
-    const hardPagesLast = [totalPages - 1, totalPages]
+
     const numberOfPages = 5;
+    const hardPagesFirst = Array.from({ length: numberOfPages }, (_, index) => index + 1);
+    const hardPagesLast = Array.from({ length: numberOfPages }, (_, index) => totalPages - index).reverse();
 
     let pages: number[] = [];
     let dots: number = 0;

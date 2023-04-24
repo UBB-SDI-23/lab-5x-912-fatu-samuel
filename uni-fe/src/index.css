@@ -101,3 +101,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.active {
+  border: whitesmoke solid 2px !important;
+}

@@ -17,7 +17,7 @@ export const Paginator = ({ rowsPerPage, totalRows, currentPage, isFirstPage, is
     const totalPages = Math.ceil(totalRows / rowsPerPage);
     const hardPagesFirst = [1, 2]
     const hardPagesLast = [totalPages - 1, totalPages]
-    const numberOfPages = 2;
+    const numberOfPages = 5;
 
     let pages: number[] = [];
     let dots: number = 0;
@@ -68,6 +68,9 @@ export const Paginator = ({ rowsPerPage, totalRows, currentPage, isFirstPage, is
 
             <button className={currentPage === 1 ? 'active floating' : 'floating'} onClick={() => setPage(1)}>1</button>
             <button className={currentPage === 2 ? 'active floating' : 'floating'} onClick={() => setPage(2)}>2</button>
+            <button className={currentPage === 3 ? 'active floating' : 'floating'} onClick={() => setPage(3)}>3</button>
+            <button className={currentPage === 4 ? 'active floating' : 'floating'} onClick={() => setPage(4)}>4</button>
+            <button className={currentPage === 5 ? 'active floating' : 'floating'} onClick={() => setPage(5)}>5</button>
 
             {(dots == -1 || dots == 0) && <span className='floating'>...</span>}
 
@@ -79,8 +82,11 @@ export const Paginator = ({ rowsPerPage, totalRows, currentPage, isFirstPage, is
             {(dots == 1 || dots == 0) && <span className='floating'>...</span>}
 
 
+            <button className={currentPage === totalPages - 4 ? 'active floating' : 'floating'} onClick={() => setPage(totalPages - 4)}>{totalPages - 2}</button>
+            <button className={currentPage === totalPages - 3 ? 'active floating' : 'floating'} onClick={() => setPage(totalPages - 3)}>{totalPages - 3}</button>
+            <button className={currentPage === totalPages - 2 ? 'active floating' : 'floating'} onClick={() => setPage(totalPages - 2)}>{totalPages - 4}</button>
             <button className={currentPage === totalPages - 1 ? 'active floating' : 'floating'} onClick={() => setPage(totalPages - 1)}>{totalPages - 1}</button>
-            <button className={currentPage === totalPages - 2 ? 'active floating' : 'floating'} onClick={() => setPage(totalPages)}>{totalPages}</button>
+            <button className={currentPage === totalPages ? 'active floating' : 'floating'} onClick={() => setPage(totalPages)}>{totalPages}</button>
 
         </div >
     )

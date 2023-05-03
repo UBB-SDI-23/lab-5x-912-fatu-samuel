@@ -3,31 +3,40 @@ from api.Models.course import Course
 from api.Serializers.course import CourseSerializer
 from api.Serializers.student import StudentSerializer
 
-from api.pagination.DefaultPagination import DefaultPagination
 from api.Models.student_course import StudentCourse
 from api.Models.student import Student
 from api.Serializers.student_course import StudentCourseSerializer
 from rest_framework import status
 import rest_framework.response as RestReponses
 
+from api.helpers.consants import PAGE_SIZE
+
 class StudentCourseView(RestViews.APIView):
     serializer_class = StudentCourseSerializer
-    pagination_class = DefaultPagination
 
     def get(self, request):
-        objects = StudentCourse.objects.all()
+        page = int(request.GET.get('page', 1))
 
-        pagination = self.pagination_class()
-        page = pagination.paginate_queryset(objects, request)
+        objects = StudentCourse.objects.filter(
+            id__gte = page * PAGE_SIZE - 9,
+            id__lte = page * PAGE_SIZE
+        )
 
-        serializer = StudentCourseSerializer(page, many = True)
+        serializer = StudentCourseSerializer(objects, many = True)
         data = serializer.data
 
         for enroll in data:
             enroll["student"] = StudentSerializer(Student.objects.get(id = enroll["student"]), exclude_fields = ["courses"]).data
             enroll["course"] = CourseSerializer(Course.objects.get(id = enroll["course"]), exclude_fields = ['students']).data
 
-        return pagination.get_paginated_response(data)
+        r_data = {
+            'count': StudentCourse.objects.count(),
+            'next': True if (page * PAGE_SIZE < StudentCourse.objects.count()) else None,
+            'previous': True if (page > 1) else None,
+            'results': data
+        }
+
+        return RestReponses.Response(r_data, status = status.HTTP_200_OK)
 
 
     def update(self, request, id, partial = False):

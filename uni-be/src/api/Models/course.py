@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Course(models.Model):
     name = models.CharField(max_length = 128)
     description = models.CharField(max_length = 512)
@@ -8,6 +7,7 @@ class Course(models.Model):
     students = models.ManyToManyField('Student', through = 'StudentCourse')
     fee = models.IntegerField()
     size = models.IntegerField()
+    # added_by = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
 
     class Meta:

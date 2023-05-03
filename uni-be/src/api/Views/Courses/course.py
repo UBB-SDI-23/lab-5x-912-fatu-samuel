@@ -15,26 +15,21 @@ class FullCourseView(RestViews.APIView):
     serializer_class = CourseSerializer    
 
     def get(self, request, id):
+        exclude = request.GET.get('exclude', None)
+        excluded = []
+
+        if exclude:
+            excluded = ['students']
+
         try:
             course = Course.objects.get(id = id)
         except Course.DoesNotExist:
             message = {"msg": f"{Course.__name__} with ID = `{id}` does not exist!"}
             return RestReponses.Response(message, status = status.HTTP_404_NOT_FOUND)
 
-        serializer = CourseSerializer(course, depth = 1)
+        serializer = CourseSerializer(course, depth = 1, exclude_fields = excluded)
 
         data = serializer.data
-        new_students = []
-
-        for student in data['students']:
-            extra_data = Student.objects.get(id = int(student['id']))
-            student_serializer = StudentSerializer(extra_data)
-            new_students.append({
-                'id': student['id'],
-                'name': student_serializer.data['name']
-            })
-            
-        data['students'] = new_students
         return RestReponses.Response(data, status = status.HTTP_200_OK)
     
 

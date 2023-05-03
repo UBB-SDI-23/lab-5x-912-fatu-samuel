@@ -1,6 +1,7 @@
 import rest_framework.views as RestViews
 
 from django.db.models import Count
+from api.helpers.consants import PAGE_SIZE
 from api.pagination.DefaultPagination import DefaultPagination
 from ...Models.student import Student
 from ...Serializers.student import StudentSerializer
@@ -9,17 +10,26 @@ import rest_framework.response as RestReponses
 
 class StudentsView(RestViews.APIView):
     serializer_class = StudentSerializer
-    pagination_class = DefaultPagination
     
     def get(self, request):
-        objects = Student.objects.all().values_list('id', flat = True)
+        page = int(request.GET.get('page', 1))
 
-        pagination = self.pagination_class()
-        page = pagination.paginate_queryset(objects, request)
+        objects = Student.objects.filter(
+            id__gte = page * PAGE_SIZE - 9,
+            id__lte = page * PAGE_SIZE
+        ).annotate(
+            courses_count = Count('courses')
+        )
 
-        objects = Student.objects.filter(id__in = page).annotate(courses_count = Count('courses'))
         serializer = StudentSerializer(objects, many = True, exclude_fields = ['courses'])
-        return pagination.get_paginated_response(serializer.data)
+
+        data = {
+            'count': Student.objects.count(),
+            'next': True if (page * PAGE_SIZE < Student.objects.count()) else None,
+            'previous': True if (page > 1) else None,
+            'results': serializer.data
+        }
+        return RestReponses.Response(data, status = status.HTTP_200_OK)
     
 
     def post(self, request):

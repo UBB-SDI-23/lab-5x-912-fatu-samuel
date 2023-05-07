@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Course(models.Model):
     name = models.CharField(max_length = 128)
@@ -8,6 +8,7 @@ class Course(models.Model):
     students = models.ManyToManyField('Student', through = 'StudentCourse')
     fee = models.IntegerField()
     size = models.IntegerField()
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
     class Meta:

@@ -91,6 +91,7 @@ const ViewAllTeachers = () => {
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">CNP</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Phone number</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center"># Courses</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Added by</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Operation</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -107,6 +108,11 @@ const ViewAllTeachers = () => {
                                         <TableCell sx={{ color: "whitesmoke" }} align="center">{teacher.cnp}</TableCell>
                                         <TableCell sx={{ color: "whitesmoke" }} align="center">{teacher.phone_number}</TableCell>
                                         <TableCell sx={{ color: "whitesmoke" }} align="center">{teacher.courses_count}</TableCell>
+                                        <TableCell sx={{ color: "whitesmoke" }} align="center">
+                                            <Link to={`/profile/${teacher.added_by.id}`}>
+                                                {teacher.added_by.username}
+                                            </Link>
+                                        </TableCell>
                                         <TableCell sx={{ color: "whitesmoke" }} align="center">
                                             <IconButton
                                                 component={Link}

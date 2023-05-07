@@ -23,7 +23,8 @@ export const AddCourse = () => {
         "description": '',
         "fee": 0,
         "size": 0,
-        "teacher": 0
+        "teacher": 0,
+        "added_by": 1
     });
 
     const fetchTeachers = async (input: string) => {
@@ -55,6 +56,11 @@ export const AddCourse = () => {
 
         if (errored) {
             return;
+        }
+
+        const id = localStorage.getItem('user_id');
+        if (id) {
+            course.added_by = Number(id);
         }
 
         try {

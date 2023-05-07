@@ -27,6 +27,11 @@ import { UpdateEnroll } from './components/enrollment/UpdateEnroll';
 import ViewStatistics from './components/statistics/ViewStatistics';
 import { ViewTeachersWCourses } from './components/statistics/ViewTeachersWCourses';
 import { FilterCoursesByFee } from './components/statistics/FilterCoursesByFee';
+import { RegistrationForm } from './components/auth/Register';
+import { ActivateAccount } from './components/auth/Activate';
+import { LoginForm } from './components/auth/Login';
+import { UserProfile } from './components/users/Profile';
+import { LogoutFrom } from './components/auth/Logout';
 
 function App() {
 
@@ -69,6 +74,14 @@ function App() {
                     <Route path="/enrollments/:enrollId" element={<ViewEnroll />} />
                     <Route path="/enrollments/:enrollId/delete" element={<DeleteEnroll />} />
                     <Route path="/enrollments/:enrollId/update" element={<UpdateEnroll />} />
+
+                    <Route path="/register" element={<RegistrationForm />} />
+                    <Route path="/activate/:activationCode" element={<ActivateAccount />} />
+                    <Route path="/login" element={<LoginForm />} />
+                    <Route path="/logout" element={<LogoutFrom />} />
+
+                    <Route path="/profile/:profileId" element={<UserProfile />} />
+
 
                 </Routes>
             </Router>

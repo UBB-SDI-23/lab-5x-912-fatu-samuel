@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 
 class Student(models.Model):
@@ -9,6 +11,7 @@ class Student(models.Model):
     mail_address = models.CharField(max_length = 128)
     phone_number = models.CharField(max_length = 10)
     courses = models.ManyToManyField("Course", through = "StudentCourse")
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         indexes = [

@@ -90,6 +90,7 @@ export const ViewAllCourses = () => {
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Name</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Teacher</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center"># Students</TableCell>
+                                    <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Added by</TableCell>
                                     <TableCell sx={{ color: "whitesmoke", fontWeight: "bold" }} align="center">Operation</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -110,6 +111,11 @@ export const ViewAllCourses = () => {
                                         </TableCell>
                                         <TableCell sx={{ color: "whitesmoke" }} align="center">{course.students_count}</TableCell>
                                         <TableCell sx={{ color: "whitesmoke" }} align="center">
+                                            <Link to={`/profile/${course.added_by.id}`}>
+                                                {course.added_by.username}
+                                            </Link>
+                                        </TableCell>
+                                        <TableCell sx={{ color: "whitesmoke" }} align="center">
                                             <IconButton
                                                 component={Link}
                                                 sx={{ mr: 3 }}
@@ -127,6 +133,7 @@ export const ViewAllCourses = () => {
                                                 <DeleteForeverIcon sx={{ color: "red" }} />
                                             </IconButton>
                                         </TableCell>
+                                        
                                     </TableRow>
                                 ))}
 

@@ -11,6 +11,7 @@ import jwt_decode from 'jwt-decode'
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
 
 export const AppMenu = () => {
 
@@ -61,7 +62,7 @@ export const AppMenu = () => {
                         component={Link}
                         color="inherit"
                         sx={{ mr: 5, ":hover": { color: "#112350" } }}
-                        startIcon={<HowToRegIcon />}>
+                        startIcon={<HomeIcon />}>
                         Home
                     </Button>
 

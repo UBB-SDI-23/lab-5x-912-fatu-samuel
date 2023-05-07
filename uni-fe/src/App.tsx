@@ -30,6 +30,8 @@ import { FilterCoursesByFee } from './components/statistics/FilterCoursesByFee';
 import { RegistrationForm } from './components/auth/Register';
 import { ActivateAccount } from './components/auth/Activate';
 import { LoginForm } from './components/auth/Login';
+import { UserProfile } from './components/users/Profile';
+import { LogoutFrom } from './components/auth/Logout';
 
 function App() {
 
@@ -76,6 +78,10 @@ function App() {
                     <Route path="/register" element={<RegistrationForm />} />
                     <Route path="/activate/:activationCode" element={<ActivateAccount />} />
                     <Route path="/login" element={<LoginForm />} />
+                    <Route path="/logout" element={<LogoutFrom />} />
+
+                    <Route path="/profile/:profileId" element={<UserProfile />} />
+
 
                 </Routes>
             </Router>

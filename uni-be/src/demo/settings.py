@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_extensions',
     'drf_spectacular',
-    'drf_spectacular_sidecar'
+    'drf_spectacular_sidecar',
+    'rest_framework_simplejwt'
 ]
 
 SPECTACULAR_SETTINGS = {

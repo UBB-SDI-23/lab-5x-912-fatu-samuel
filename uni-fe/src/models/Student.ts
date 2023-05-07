@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export interface Student {
     id: number,
     name: string,
@@ -8,4 +10,5 @@ export interface Student {
     phone_number: string,
     courses: number[],
     courses_count: number,
+    added_by: User
 }

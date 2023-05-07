@@ -6,6 +6,7 @@ from django.utils import timezone
 from rest_framework import generics, status
 from rest_framework.request import Request
 from rest_framework.response import Response
+from django.contrib.auth.models import User
 
 from api.Models.userprofile import UserProfile
 from api.Serializers.userprofile import UserProfileSerializer
@@ -17,8 +18,9 @@ class UserRegistrationView(generics.CreateAPIView):
     serializer_class = UserProfileSerializer
 
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        activation_expiry_date = str(timezone.now() + timedelta(minutes=10))
-        activation_code = str(uuid.uuid4())
+        activation_expiry_date = f'{timezone.now() + timedelta(minutes = 10)}'
+        activation_code = f'{uuid.uuid4()}'
+        
         data = request.data.copy()
         data["activation_code"] = activation_code
         data["activation_expiry_date"] = activation_expiry_date
@@ -53,7 +55,12 @@ class UserActivationView(generics.UpdateAPIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
+        # changed
+        user = User.objects.get(username = user_profile.user.username)
+
         if user_profile.activation_expiry_date < timezone.now():
+            user_profile.delete()
+            user.delete()
             return Response(
                 {"error": "Activation code expired"}, status=status.HTTP_400_BAD_REQUEST
             )
@@ -63,8 +70,10 @@ class UserActivationView(generics.UpdateAPIView):
                 {"success": "Account already active"}, status=status.HTTP_200_OK
             )
 
+        user.is_active = True
         user_profile.active = True
         user_profile.save()
+        user.save()
         return Response(
             {"success": "User profile activated"}, status=status.HTTP_200_OK
         )

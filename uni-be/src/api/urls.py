@@ -6,6 +6,7 @@ from api.Views.Enroll.special_sc import SpecificStudentCourseView
 from api.Views.Students.students_filter import StudentsFilterView
 
 from api.Views.Teachers.teachers_filter import TeachersFilterView
+from api.Views.users import UserDetailsView
 from .Views.Students.students import StudentsView
 from .Views.Students.student import StudentView
 from .Views.Teachers.teacher import FullTeacherView
@@ -48,4 +49,6 @@ urlpatterns = [
 
     path("register/", UserRegistrationView.as_view(), name="register"),
     path("activate/", UserActivationView.as_view(), name="activate-user"),
+
+    path("profile/<str:id>/", UserDetailsView.as_view(), name="profile"),
 ]

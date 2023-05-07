@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Teacher(models.Model):
@@ -8,7 +9,7 @@ class Teacher(models.Model):
     mail_address = models.CharField(max_length = 128)
     phone_number = models.CharField(max_length = 10)
     description = models.CharField(max_length = 5012, default = '-')
-    # added_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    added_by = models.ForeignKey(User, on_delete=models.CASCADE)
     
 
     class Meta:

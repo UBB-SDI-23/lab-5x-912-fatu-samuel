@@ -20,13 +20,18 @@ class UserSerializer(DynamicFieldsModelSerializer):
         fields = (
             "username",
             "password",
+            "id"
         )
 
+
 class UserDetailSerializer(DynamicFieldsModelSerializer):
-    username = serializers.CharField(max_length = 128)
+    username = serializers.SerializerMethodField()
     teacher_count = serializers.IntegerField(read_only = True)
-    courses_count = serializers.IntegerField(read_only = True)
-    students_count = serializers.IntegerField(read_only = True)
+    course_count = serializers.IntegerField(read_only = True)
+    student_count = serializers.IntegerField(read_only = True)
+
+    def get_username(self, user_profile: UserProfile) -> str:
+        return user_profile.user_id
 
     class Meta:
         model = UserProfile
@@ -38,6 +43,6 @@ class UserDetailSerializer(DynamicFieldsModelSerializer):
             "bio",
             "location",
             "teacher_count",
-            "courses_count",
-            "students_count",
+            "course_count",
+            "student_count",
         )

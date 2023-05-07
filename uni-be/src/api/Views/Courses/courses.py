@@ -3,12 +3,14 @@ from api.Models.teacher import Teacher
 from api.Serializers.teacher import TeacherSerializer
 
 from django.db.models import Count
+from api.Serializers.users import UserSerializer
 
 from api.helpers.consants import PAGE_SIZE
 from ...Models.course import Course
 from ...Serializers.course import CourseSerializer
 from rest_framework import status
 import rest_framework.response as RestReponses
+from django.contrib.auth.models import User
 
 class CoursesView(RestViews.APIView):
     serializer_class = CourseSerializer
@@ -24,6 +26,12 @@ class CoursesView(RestViews.APIView):
         )
 
         serializer = CourseSerializer(objects, many = True, exclude_fields = ['students'], depth = 1)
+
+        # check if the serializer contains the actual user or only the id
+        # if the user is not in the serializer, then add it
+        # if type(serializer.data[0]['added_by']) == int:
+        for course in serializer.data:
+            course['added_by'] =  UserSerializer(User.objects.get(id = course['added_by'])).data
 
         # check if the serializer contains the actual teacher or only the id
         # if the teacher is not in the serializer, then add it

@@ -1,12 +1,14 @@
 import rest_framework.views as RestViews
 
 from django.db.models import Count
+from api.Serializers.users import UserSerializer
 from api.helpers.consants import PAGE_SIZE
 from api.pagination.DefaultPagination import DefaultPagination
 from ...Models.student import Student
 from ...Serializers.student import StudentSerializer
 from rest_framework import status
 import rest_framework.response as RestReponses
+from django.contrib.auth.models import User
 
 class StudentsView(RestViews.APIView):
     serializer_class = StudentSerializer
@@ -21,7 +23,13 @@ class StudentsView(RestViews.APIView):
             courses_count = Count('courses')
         )
 
-        serializer = StudentSerializer(objects, many = True, exclude_fields = ['courses'])
+        serializer = StudentSerializer(objects, many = True, exclude_fields = ['courses'], depth = 1)
+
+        # check if the serializer contains the actual user or only the id
+        # if the user is not in the serializer, then add it
+        if type(serializer.data[0]['added_by']) == int:
+            for student in serializer.data:
+                student['added_by'] =  UserSerializer(User.objects.get(id = student['added_by'])).data
 
         data = {
             'count': Student.objects.count(),

@@ -7,7 +7,8 @@ from ...Models.teacher import Teacher
 from ...Serializers.teacher import TeacherSerializer
 from rest_framework import status
 import rest_framework.response as RestReponses
-
+from django.contrib.auth.models import User
+from api.Serializers.users import UserSerializer
 
 class TeachersView(RestViews.APIView):
     serializer_class = TeacherSerializer
@@ -22,7 +23,13 @@ class TeachersView(RestViews.APIView):
             courses_count = Count('courses')
         )
 
-        serializer = TeacherSerializer(objects, many = True, exclude_fields = ['courses'])
+        serializer = TeacherSerializer(objects, many = True, exclude_fields = ['courses'], depth = 1)
+
+        # check if the serializer contains the actual user or only the id
+        # if the user is not in the serializer, then add it
+        if type(serializer.data[0]['added_by']) == int:
+            for teacher in serializer.data:
+                teacher['added_by'] =  UserSerializer(User.objects.get(id = teacher['added_by'])).data
 
         data = {
             'count': Teacher.objects.count(),

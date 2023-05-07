@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export interface Teacher {
     id: number,
     name: string,
@@ -7,4 +9,5 @@ export interface Teacher {
     mail_address: string,
     description: string,
     courses_count: number,
+    added_by: User
 }

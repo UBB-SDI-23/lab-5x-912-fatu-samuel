@@ -15,10 +15,11 @@ class TeachersView(RestViews.APIView):
 
     def get(self, request):
         page = int(request.GET.get('page', 1))
+        page_size = int(request.GET.get('page_size', PAGE_SIZE))
 
         objects = Teacher.objects.filter(
-            id__gte = page * PAGE_SIZE - 9,
-            id__lte = page * PAGE_SIZE
+            id__gte = page * page_size - page_size + 1,
+            id__lte = page * page_size
         ).annotate(
             courses_count = Count('courses')
         )
@@ -33,7 +34,7 @@ class TeachersView(RestViews.APIView):
 
         data = {
             'count': Teacher.objects.count(),
-            'next': True if (page * PAGE_SIZE < Teacher.objects.count()) else None,
+            'next': True if (page * page_size < Teacher.objects.count()) else None,
             'previous': True if (page > 1) else None,
             'results': serializer.data
         }

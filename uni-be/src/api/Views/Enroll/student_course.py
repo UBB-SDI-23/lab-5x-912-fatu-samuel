@@ -16,10 +16,11 @@ class StudentCourseView(RestViews.APIView):
 
     def get(self, request):
         page = int(request.GET.get('page', 1))
+        page_size = int(request.GET.get('page_size', PAGE_SIZE))
 
         objects = StudentCourse.objects.filter(
-            id__gte = page * PAGE_SIZE - 9,
-            id__lte = page * PAGE_SIZE
+            id__gte = page * page_size - page_size + 1,
+            id__lte = page * page_size
         )
 
         serializer = StudentCourseSerializer(objects, many = True)

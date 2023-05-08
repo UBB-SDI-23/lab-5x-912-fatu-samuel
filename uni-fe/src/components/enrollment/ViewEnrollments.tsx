@@ -33,7 +33,11 @@ export const ViewEnrollments = () => {
     useEffect(() => {
         setLoading(true);
 
-        fetch(`${API_URL}/enroll/?page=${page}`)
+        const stringUser = localStorage.getItem("user");
+        const user = JSON.parse(stringUser!);
+        const new_page_size = user?.page_size || 10;
+
+        fetch(`${API_URL}/enroll/?page=${page}&page_size=${new_page_size}`)
             .then(res => res.json())
             .then(data => {
                 const { count, next, prev, results } = data;

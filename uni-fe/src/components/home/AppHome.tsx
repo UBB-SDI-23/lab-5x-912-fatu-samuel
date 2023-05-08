@@ -9,6 +9,7 @@ interface User {
     date_of_birth: string;
     bio: string;
     location: string;
+    page_size: number;
 }
 
 export const AppHome = () => {
@@ -19,14 +20,15 @@ export const AppHome = () => {
         last_name: '',
         date_of_birth: '',
         bio: '',
-        location: ''
+        location: '',
+        page_size: 0
     });
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            const decoded: any = jwt_decode(token);
-            const user = decoded['user'];
+        const userString = localStorage.getItem('user');
+        const user = userString !== null ? JSON.parse(userString) : null;
+
+        if (user !== null) {
             setUser(user);
         }
     }, []);
@@ -112,6 +114,33 @@ export const AppHome = () => {
                                     value={user.location}
                                     InputProps={{
                                         readOnly: true,
+                                    }}
+                                />
+
+                                <TextField
+                                    id="page_sizes"
+                                    label="Page Size"
+                                    variant="outlined"
+                                    fullWidth
+                                    sx={{ mb: 2, color: "whitesmoke !important" }}
+                                    value={user.page_size}
+                                    type="number"
+                                    InputLabelProps={{ shrink: true }} 
+                                    onChange={(event) => {
+                                        const size = Number(event.target.value);
+                                        if (size < 0 || size > 100) {
+                                            return;
+                                        }
+
+                                        setUser({
+                                            ...user,
+                                            page_size: size
+                                        });
+                                        
+                                        localStorage.setItem('user', JSON.stringify({
+                                            ...user,
+                                            page_size: size
+                                        }));
                                     }}
                                 />
 

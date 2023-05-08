@@ -6,4 +6,5 @@ export interface User{
     date_of_birth: string;
     bio: string;
     location: string;
+    page_size: number;
 };

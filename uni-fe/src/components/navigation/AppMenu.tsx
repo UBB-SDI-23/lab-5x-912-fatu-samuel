@@ -26,17 +26,19 @@ export const AppMenu = () => {
         date_of_birth: '',
         bio: '',
         location: '',
+        page_size: 0
     });
 
     useEffect(() => {
 		const intervalId = setInterval(() => {
-			const token = localStorage.getItem('token');
+			const userString = localStorage.getItem('user');
+            const user = userString !== null ? JSON.parse(userString) : null;
 
-			if (token !== null) {
-                const decoded: any = jwt_decode(token);
-                setUser(decoded['user']);
+			if (user !== null) {
+                setUser(user);
                 return;
 			}
+            
             setUser({
                 id: 0,
                 username: '',
@@ -45,6 +47,7 @@ export const AppMenu = () => {
                 date_of_birth: '',
                 bio: '',
                 location: '',
+                page_size: 0
             });
 		}, 250);
 	

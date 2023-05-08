@@ -28,12 +28,16 @@ export const ViewAllCourses = () => {
     const [isLastPage, setIsLastPage] = useState(false)
     const [totalRows, setTotalRows] = useState(0)
 
-    const rowsPerPage = 10;
+    const [rowsPerPage, setRowsPerPage] = useState(10)
 
     useEffect(() => {
         setLoading(true);
 
-        fetch(`${API_URL}/courses/?page=${page}`)
+        const stringUser = localStorage.getItem("user");
+        const user = JSON.parse(stringUser!);
+        const new_page_size = user?.page_size || 10;
+
+        fetch(`${API_URL}/courses/?page=${page}&page_size=${new_page_size}`)
             .then(res => res.json())
             .then(data => {
                 const { count, next, prev, results } = data;

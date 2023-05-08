@@ -38,7 +38,6 @@ export const RegistrationForm = () => {
             }
             const response = await axios.post(`${API_URL}/register/`, data);
             setCode(response.data['activation_code']);
-            // changed
         }
         catch (error: any) {
             const errors = error.response.data.user;
@@ -70,6 +69,7 @@ export const RegistrationForm = () => {
                         label="Password"
                         variant="outlined"
                         fullWidth
+                        type="password"
                         sx={{ mb: 2, color: "whitesmoke !important" }}
                         onChange={(event) => setFormData({ ...formData, password: event.target.value })}
                         />

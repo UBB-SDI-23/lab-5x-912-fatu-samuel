@@ -4,16 +4,16 @@ import rest_framework.views as RestViews
 
 from api.Models.userprofile import UserProfile
 from api.Serializers.userprofile import UserProfileSerializer
-from api.Serializers.users import UserDetailSerializer, UsernameAndRoleSerializer
+from api.Serializers.users import UserDetailSerializer, UserDetailsSerializer
 from rest_framework import status
 import rest_framework.response as RestReponses
 
 from api.pagination.DefaultPagination import DefaultPagination
-from api.permissions import IsAdminOrReadOnly
+from api.permissions import HasEditPermissionOrReadOnly, IsAdminOrReadOnly
 
 class UserList(generics.ListAPIView):
     queryset = UserProfile.objects.all().order_by('id')
-    serializer_class = UsernameAndRoleSerializer
+    serializer_class = UserDetailsSerializer
     pagination_class = DefaultPagination
 
 
@@ -44,3 +44,21 @@ class UpdateUserRoleView(RestViews.APIView):
         user.save()
         return RestReponses.Response({"message": "User role updated"}, status=status.HTTP_200_OK)
     
+
+# changed
+class UpdateUserPageSizeView(RestViews.APIView):
+    permission_classes = [HasEditPermissionOrReadOnly]
+
+    def put(self, request, id):
+
+        try:
+            user = UserProfile.objects.get(id = id)
+        except UserProfile.DoesNotExist:
+            message = {"msg": f"{UserProfile.__name__} with ID = `{id}` does not exist!"}
+            return RestReponses.Response(message, status=status.HTTP_404_NOT_FOUND)
+        
+        self.check_object_permissions(request, user)
+
+        user.page_size = request.data['page_size']
+        user.save()
+        return RestReponses.Response({"message": "User page size updated"}, status = status.HTTP_200_OK)

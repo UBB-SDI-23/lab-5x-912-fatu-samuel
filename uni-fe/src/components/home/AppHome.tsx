@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
 import { Autocomplete, Button, Card, CardActions, CardContent, Container, Link, TextField } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
+import { API_URL } from '../../constants';
 
 interface User {
+    id: number;
     username: string;
     first_name: string;
     last_name: string;
@@ -15,6 +19,7 @@ interface User {
 export const AppHome = () => {
 
     const [user, setUser] = useState<User>({
+        id: 0,
         username: '',
         first_name: '',
         last_name: '',
@@ -125,27 +130,39 @@ export const AppHome = () => {
                                     sx={{ mb: 2, color: "whitesmoke !important" }}
                                     value={user.page_size}
                                     type="number"
-                                    InputLabelProps={{ shrink: true }} 
+                                    InputLabelProps={{ shrink: true }}
                                     onChange={(event) => {
+                                        // changed
                                         const size = Number(event.target.value);
-                                        if (size < 0 || size > 100) {
+                                        if (size < 1 || size > 100) {
+                                            toast.error('Page size must be between 1 and 100');
                                             return;
                                         }
 
-                                        setUser({
-                                            ...user,
-                                            page_size: size
-                                        });
-                                        
-                                        localStorage.setItem('user', JSON.stringify({
-                                            ...user,
-                                            page_size: size
-                                        }));
+                                        try {
+                                            axios.put(`${API_URL}/update-page-size/${user.id}/`, {
+                                                "page_size": user.page_size,
+                                            }, {
+                                                headers: {
+                                                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                                                }
+                                            });
+
+                                            user.page_size = size;
+                                            localStorage.setItem('user', JSON.stringify(user));
+                                            setUser({ ...user });
+                                        } catch (error) {
+                                            toast.error("Error updating page size");
+                                        }
+
+
                                     }}
                                 />
 
                             </CardContent>
                         </Card>
+
+                        <ToastContainer />
                     </Container>
                 </>
             )}

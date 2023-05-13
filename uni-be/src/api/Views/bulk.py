@@ -32,21 +32,21 @@ class GenericBulk(RestViews.APIView):
         return RestReponses.Response(status=status.HTTP_200_OK)
 
 
-class BulkCourses(GenericBulk):
+class BulkCoursesView(GenericBulk):
     def __init__(self):
         super().__init__(Course)
 
 
-class BulkStudents(GenericBulk):
+class BulkStudentsView(GenericBulk):
     def __init__(self):
         super().__init__(Student)
 
 
-class BulkTeachers(GenericBulk):
+class BulkTeachersView(GenericBulk):
     def __init__(self):
         super().__init__(Teacher)
 
 
-class BulkUsers(GenericBulk):
+class BulkUsersView(GenericBulk):
     def __init__(self):
         super().__init__(UserProfile)

@@ -6,7 +6,7 @@ from rest_framework.request import Request
 from rest_framework.views import APIView
 
 
-class   HasEditPermissionOrReadOnly(permissions.BasePermission):
+class HasEditPermissionOrReadOnly(permissions.BasePermission):
 
     def has_object_permission(self, request: Request, view: APIView, obj: Any) -> bool:
         print("has_permission")

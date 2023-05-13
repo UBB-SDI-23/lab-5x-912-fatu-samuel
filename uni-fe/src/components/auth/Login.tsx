@@ -31,10 +31,8 @@ export const LoginForm = () => {
             const user = decoded['user'];
             localStorage.setItem('user_id', user["id"])
             
-            localStorage.setItem('user', JSON.stringify({
-                ...user,
-                page_size: 10
-            }));
+            // changed
+            localStorage.setItem('user', JSON.stringify(user));
 
             navigate(`/`);
         }

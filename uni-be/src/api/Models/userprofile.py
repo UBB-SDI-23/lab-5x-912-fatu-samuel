@@ -26,7 +26,9 @@ class UserProfile(models.Model):
         default="regular",
     )
 
-    
+    # changed
+    page_size = models.IntegerField(default = 10)
+
     def __str__(self):
         return self.first_name + " " + self.last_name
     

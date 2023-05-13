@@ -1,12 +1,15 @@
 from rest_framework import status
 import rest_framework.response as RestReponses
 import rest_framework.views as RestViews
+
+from api.permissions import HasEditPermissionOrReadOnly, IsAdminOrReadOnly
 from ...Models.teacher import Teacher
 from ...Serializers.teacher import TeacherSerializer
-
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class FullTeacherView(RestViews.APIView):
     serializer_class = TeacherSerializer
+    permission_classes = [HasEditPermissionOrReadOnly]
 
     def get(self, request, id):
         try:
@@ -29,6 +32,9 @@ class FullTeacherView(RestViews.APIView):
         except Teacher.DoesNotExist:
             message = {"msg": f"{Teacher.__name__} with ID = `{id}` does not exist!"}
             return RestReponses.Response(message, status = status.HTTP_404_NOT_FOUND)
+
+        print(request.user, request.user.is_authenticated, request.user.is_staff)
+        self.check_object_permissions(request, object)
 
         serializer = TeacherSerializer(object, data = request.data, partial = partial)
 
@@ -57,6 +63,9 @@ class FullTeacherView(RestViews.APIView):
         except Teacher.DoesNotExist:
             message = {"msg": f"{Teacher.__name__} with ID = `{id}` does not exist!"}
             return RestReponses.Response(message, status = status.HTTP_404_NOT_FOUND)
+
+        print(request.user, request.user.is_authenticated, request.user.is_staff)
+        self.check_object_permissions(request, object)
 
         object.delete()
         return RestReponses.Response({"msg": f"{Teacher.__name__} with ID = `{id}` deleted"}, status = status.HTTP_200_OK)

@@ -32,6 +32,12 @@ import { ActivateAccount } from './components/auth/Activate';
 import { LoginForm } from './components/auth/Login';
 import { UserProfile } from './components/users/Profile';
 import { LogoutFrom } from './components/auth/Logout';
+import Users from './components/users/AllUsers';
+import { DataManagement } from './components/DataManagement';
+import { CoursesBulk } from './components/courses/BulkCourses';
+import { UsersBulk } from './components/users/BulkUsers';
+import { TeachersBulk } from './components/teachers/BulkTeachers';
+import { StudentsBulk } from './components/students/BulkStudents';
 
 function App() {
 
@@ -81,6 +87,15 @@ function App() {
                     <Route path="/logout" element={<LogoutFrom />} />
 
                     <Route path="/profile/:profileId" element={<UserProfile />} />
+
+                    <Route path="/users" element={<Users />} />
+
+                    <Route path="/dataManagement" element={<DataManagement />} />
+
+                    <Route path="/bulk/courses" element={<CoursesBulk />} />
+                    <Route path="/bulk/students" element={<StudentsBulk />} />
+                    <Route path="/bulk/teachers" element={<TeachersBulk />} />
+                    <Route path="/bulk/users" element={<UsersBulk />} />
 
 
                 </Routes>

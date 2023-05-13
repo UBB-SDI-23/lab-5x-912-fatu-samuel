@@ -2,15 +2,18 @@ import rest_framework.views as RestViews
 
 from api.Models.course import Course
 from api.Serializers.course import CourseSerializer
+from api.permissions import HasEditPermissionOrReadOnly
 from ...Models.student import Student
 from ...Models.student_course import StudentCourse
 from ...Serializers.student import StudentSerializer
 from ...Serializers.student_course import StudentCourseSerializer
 from rest_framework import status
 import rest_framework.response as RestReponses
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class StudentView(RestViews.APIView):
     serializer_class = StudentSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
     
     def get(self, request, id):
         try:
@@ -58,14 +61,17 @@ class StudentView(RestViews.APIView):
 
 
     def put(self, request, id):
+        self.check_permissions(request)
         return self.update(request, id)
     
 
     def patch(self, request, id):
+        self.check_permissions(request)
         return self.update(request, id, partial = True)
     
 
     def delete(self, request, id):
+        self.check_permissions(request)
         try:
             object = Student.objects.get(id = id)
         except Student.DoesNotExist:

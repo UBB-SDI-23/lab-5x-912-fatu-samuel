@@ -1,4 +1,6 @@
 import rest_framework.views as RestViews
+
+from api.permissions import HasEditPermissionOrReadOnly
 from ...Models.teacher import Teacher
 from django.db.models import Count
 import rest_framework.response as RestReponses
@@ -6,12 +8,15 @@ from rest_framework import status
 from ...Models.course import Course
 from ...Serializers.teacher import TeacherSerializer
 from ...Serializers.course import CourseSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 class TeacherCoursesAddView(RestViews.APIView):
     serializer_class = TeacherSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
     
     def post(self, request, id):
+        self.check_permissions(request)
         try:
             teacher = Teacher.objects.get(id = id)
         except Teacher.DoesNotExist:

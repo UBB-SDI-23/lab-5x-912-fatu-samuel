@@ -1,9 +1,11 @@
 import rest_framework.views as RestViews
 
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.db.models import Count
 from api.Serializers.users import UserSerializer
 from api.helpers.consants import PAGE_SIZE
 from api.pagination.DefaultPagination import DefaultPagination
+from api.permissions import HasEditPermissionOrReadOnly
 from ...Models.student import Student
 from ...Serializers.student import StudentSerializer
 from rest_framework import status
@@ -12,6 +14,7 @@ from django.contrib.auth.models import User
 
 class StudentsView(RestViews.APIView):
     serializer_class = StudentSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
     
     def get(self, request):
         page = int(request.GET.get('page', 1))
@@ -28,7 +31,7 @@ class StudentsView(RestViews.APIView):
 
         # check if the serializer contains the actual user or only the id
         # if the user is not in the serializer, then add it
-        if type(serializer.data[0]['added_by']) == int:
+        if len(serializer.data) > 0 and type(serializer.data[0]['added_by']) == int:
             for student in serializer.data:
                 student['added_by'] =  UserSerializer(User.objects.get(id = student['added_by'])).data
 
@@ -42,6 +45,7 @@ class StudentsView(RestViews.APIView):
     
 
     def post(self, request):
+        self.check_permissions(request)
         serializer = StudentSerializer(data = request.data)
         
         if not serializer.is_valid():

@@ -20,7 +20,7 @@ class UserRegistrationView(generics.CreateAPIView):
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         activation_expiry_date = f'{timezone.now() + timedelta(minutes = 10)}'
         activation_code = f'{uuid.uuid4()}'
-        
+
         data = request.data.copy()
         data["activation_code"] = activation_code
         data["activation_expiry_date"] = activation_expiry_date
@@ -55,7 +55,6 @@ class UserActivationView(generics.UpdateAPIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # changed
         user = User.objects.get(username = user_profile.user.username)
 
         if user_profile.activation_expiry_date < timezone.now():

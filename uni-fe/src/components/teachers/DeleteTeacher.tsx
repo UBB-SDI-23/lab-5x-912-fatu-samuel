@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import axios from "axios";
 import { API_URL } from "../../constants";
+import { ToastContainer, toast } from 'react-toastify';
 
 export const DeleteTeacher = () => {
 
@@ -11,7 +12,15 @@ export const DeleteTeacher = () => {
 
     const handleDelete = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
-        await axios.delete(`${API_URL}/teachers/${teacherId}/`);
+        try {
+            await axios.delete(`${API_URL}/teachers/${teacherId}/`);
+        } catch (error: any) {
+            console.log(error.response.status);
+            if (error.response.status === 401 || error.response.status === 403) {
+                toast.error("You are not authorized to delete this teacher!");
+            }
+            return;
+        }
         navigate("/teachers");
     };
 
@@ -33,6 +42,7 @@ export const DeleteTeacher = () => {
                     <Button onClick={handleDelete}>Delete it</Button>
                     <Button onClick={handleCancel}>Cancel</Button>
                 </CardActions>
+                <ToastContainer />
             </Card>
         </Container>
     );

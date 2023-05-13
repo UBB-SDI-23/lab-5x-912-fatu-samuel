@@ -61,14 +61,17 @@ class StudentCourseView(RestViews.APIView):
 
 
     def put(self, request, id):
+        self.check_permissions(request)
         return self.update(request, id)
     
 
     def patch(self, request, id):
+        self.check_permissions(request)
         return self.update(request, id, partial = True)
 
 
     def post(self, request):
+        self.check_permissions(request)
         serializer = StudentCourseSerializer(data = request.data)
         
         if not serializer.is_valid():
@@ -83,6 +86,7 @@ class StudentCourseView(RestViews.APIView):
     
     
     def delete(self, request, id):
+        self.check_permissions(request)
         try:
             object = StudentCourse.objects.get(id = id)
         except StudentCourse.DoesNotExist:

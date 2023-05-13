@@ -9,12 +9,17 @@ from ...Serializers.course import CourseSerializer
 from ...Serializers.student_course import StudentCourseSerializer
 from rest_framework import status
 import rest_framework.response as RestReponses
+from api.permissions import HasEditPermissionOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 class FullCourseView(RestViews.APIView):
     serializer_class = CourseSerializer    
+    permission_classes = [IsAuthenticatedOrReadOnly, HasEditPermissionOrReadOnly]
 
     def get(self, request, id):
+        self.check_permissions(request)
+        
         exclude = request.GET.get('exclude', None)
         excluded = []
 
@@ -54,14 +59,17 @@ class FullCourseView(RestViews.APIView):
 
 
     def put(self, request, id):
+        self.check_permissions(request)
         return self.update(request, id)
     
 
     def patch(self, request, id):
+        self.check_permissions(request)
         return self.update(request, id, partial = True)
     
 
     def delete(self, request, id):
+        self.check_permissions(request)
         try:
             object = Course.objects.get(id = id)
         except Course.DoesNotExist:

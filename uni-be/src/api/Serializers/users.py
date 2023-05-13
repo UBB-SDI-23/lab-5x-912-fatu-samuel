@@ -45,10 +45,13 @@ class UserDetailSerializer(DynamicFieldsModelSerializer):
             "teacher_count",
             "course_count",
             "student_count",
+            # changed
+            "page_size"
         )
 
 
-class UsernameAndRoleSerializer(serializers.ModelSerializer[UserProfile]):
+# changed
+class UserDetailsSerializer(serializers.ModelSerializer[UserProfile]):
     username = serializers.SerializerMethodField()
 
     def get_username(self, user_profile: UserProfile) -> str:
@@ -60,4 +63,5 @@ class UsernameAndRoleSerializer(serializers.ModelSerializer[UserProfile]):
             "id",
             "username",
             "role",
+            "page_size"
         )

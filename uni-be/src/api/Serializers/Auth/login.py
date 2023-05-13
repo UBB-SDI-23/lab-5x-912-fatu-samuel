@@ -21,6 +21,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
             "date_of_birth": f'{user.date_of_birth}',
             "location": user.location,
             "role": user.role,
+            # changed
+            "page_size": user.page_size
         } 
 
         data["refresh"] = str(refresh)

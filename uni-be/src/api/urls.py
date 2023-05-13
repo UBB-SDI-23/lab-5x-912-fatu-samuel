@@ -10,8 +10,8 @@ from api.Views.Sql.Teachers import TeachersSqlView, TruncateTeachersSqlView
 from api.Views.Students.students_filter import StudentsFilterView
 
 from api.Views.Teachers.teachers_filter import TeachersFilterView
-from api.Views.bulk import BulkCourses, BulkStudents, BulkTeachers, BulkUsers
-from api.Views.users import UpdateUserRoleView, UserDetailsView, UserList
+from api.Views.bulk import BulkCoursesView, BulkStudentsView, BulkTeachersView, BulkUsersView
+from api.Views.users import UpdateUserPageSizeView, UpdateUserRoleView, UserDetailsView, UserList
 from .Views.Students.students import StudentsView
 from .Views.Students.student import StudentView
 from .Views.Teachers.teacher import FullTeacherView
@@ -73,8 +73,11 @@ urlpatterns = [
     path("database/enrolls/generate/", EnrollmentsSqlView.as_view()),
     path("database/enrolls/truncate/", TruncateEnrollmentsSqlView.as_view()),
 
-    path("bulk/courses/<str:ids>/", BulkCourses.as_view()),
-    path("bulk/students/<str:ids>/", BulkStudents.as_view()),
-    path("bulk/teachers/<str:ids>/", BulkTeachers.as_view()),
-    path("bulk/users/<str:ids>/", BulkUsers.as_view()),
+    path("bulk/courses/<str:ids>/", BulkCoursesView.as_view()),
+    path("bulk/students/<str:ids>/", BulkStudentsView.as_view()),
+    path("bulk/teachers/<str:ids>/", BulkTeachersView.as_view()),
+    path("bulk/users/<str:ids>/", BulkUsersView.as_view()),
+
+    # changed
+    path("update-page-size/<str:id>/", UpdateUserPageSizeView.as_view()),
 ]

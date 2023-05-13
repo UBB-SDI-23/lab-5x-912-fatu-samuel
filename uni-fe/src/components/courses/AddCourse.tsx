@@ -64,7 +64,11 @@ export const AddCourse = () => {
         }
 
         try {
-            await axios.post(`${API_URL}/courses/`, course);
+            await axios.post(`${API_URL}/courses/`, course, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
             navigate('/courses');
         }
         catch (error: any) {

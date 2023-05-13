@@ -11,9 +11,12 @@ from ...Serializers.course import CourseSerializer
 from rest_framework import status
 import rest_framework.response as RestReponses
 from django.contrib.auth.models import User
+from api.permissions import HasEditPermissionOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class CoursesView(RestViews.APIView):
     serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request):
         page = int(request.GET.get('page', 1))
@@ -51,6 +54,7 @@ class CoursesView(RestViews.APIView):
     
     
     def post(self, request):
+        self.check_permissions(request)
         serializer = CourseSerializer(data = request.data)
         
         if not serializer.is_valid():

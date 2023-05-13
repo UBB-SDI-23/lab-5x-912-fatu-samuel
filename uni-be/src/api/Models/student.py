@@ -17,6 +17,7 @@ class Student(models.Model):
         indexes = [
             models.Index(fields = ['id'], name = 'student_id_index'),
             models.Index(fields = ['name'], name = 'student_name_index'),
+            models.Index(fields = ['added_by'], name = 'student_added_by_index')
         ]
 
     def __str__(self):

@@ -12,6 +12,7 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 
 export const AppMenu = () => {
 
@@ -26,19 +27,20 @@ export const AppMenu = () => {
         date_of_birth: '',
         bio: '',
         location: '',
-        page_size: 0
+        page_size: 0,
+        role: ''
     });
 
     useEffect(() => {
-		const intervalId = setInterval(() => {
-			const userString = localStorage.getItem('user');
+        const intervalId = setInterval(() => {
+            const userString = localStorage.getItem('user');
             const user = userString !== null ? JSON.parse(userString) : null;
 
-			if (user !== null) {
+            if (user !== null) {
                 setUser(user);
                 return;
-			}
-            
+            }
+
             setUser({
                 id: 0,
                 username: '',
@@ -47,12 +49,13 @@ export const AppMenu = () => {
                 date_of_birth: '',
                 bio: '',
                 location: '',
-                page_size: 0
+                page_size: 0,
+                role: ''
             });
-		}, 250);
-	
-		return () => clearInterval(intervalId);
-	  }, []);
+        }, 250);
+
+        return () => clearInterval(intervalId);
+    }, []);
 
     return (
         <Box>
@@ -79,7 +82,7 @@ export const AppMenu = () => {
                             startIcon={<HowToRegIcon />}>
                             Register
                         </Button>
-					)}
+                    )}
 
                     {user.username === '' && (
                         <Button
@@ -91,9 +94,9 @@ export const AppMenu = () => {
                             startIcon={<LoginIcon />}>
                             LogIn
                         </Button>
-					)}
+                    )}
 
-					{user.username !== '' && (
+                    {user.username !== '' && (
                         <Button
                             variant={path.startsWith("/logout") ? "outlined" : "text"}
                             to="/logout"
@@ -103,8 +106,31 @@ export const AppMenu = () => {
                             startIcon={<LogoutIcon />}>
                             LogOut
                         </Button>
-					)}
+                    )}
 
+                    {user.username !== '' && user.role === "admin" && (
+                        <Button
+                            variant={path.startsWith("/users") ? "outlined" : "text"}
+                            to="/users"
+                            component={Link}
+                            color="inherit"
+                            sx={{ mr: 5 }}
+                            startIcon={<Diversity3Icon />}>
+                            Users
+                        </Button>
+                    )}
+
+                    {user.username !== '' && user.role === "admin" &&(
+                        <Button
+                            variant={path.startsWith("/dataManagement") ? "outlined" : "text"}
+                            to="/dataManagement"
+                            component={Link}
+                            color="inherit"
+                            sx={{ mr: 5 }}
+                            startIcon={<HowToRegIcon />}>
+                            Data Management
+                        </Button>
+					)}
 
                     <Button
                         variant={path.startsWith("/students") && !path.startsWith('/students/avg-fee') ? "outlined" : "text"}

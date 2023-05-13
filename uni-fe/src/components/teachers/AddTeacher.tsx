@@ -19,7 +19,8 @@ const AddTeacher = () => {
         "date_of_birth": '',
         "phone_number": '',
         "mail_address": '',
-        "description": ''
+        "description": '',
+        "added_by": 1
     });
 
     useEffect(() => {
@@ -34,7 +35,21 @@ const AddTeacher = () => {
         }
 
         try {
-            await axios.post(`${API_URL}/teachers/`, teacher);
+            const user_id = localStorage.getItem("user_id");
+            teacher.added_by = Number(user_id);
+            
+            const token = localStorage.getItem("token") || "";
+            if (!token) {
+                toast.error("You are not logged in!");
+                return;
+            }
+
+            await axios.post(`${API_URL}/teachers/`, teacher, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            
             navigate('/teachers');
         }
         catch (error: any) {

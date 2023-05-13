@@ -7,4 +7,5 @@ export interface User{
     bio: string;
     location: string;
     page_size: number;
+    role: string;
 };

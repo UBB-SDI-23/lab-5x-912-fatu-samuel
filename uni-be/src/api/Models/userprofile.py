@@ -16,6 +16,17 @@ class UserProfile(models.Model):
     activation_expiry_date = models.DateTimeField()
     active = models.BooleanField()
     
+    role = models.CharField(
+        max_length=10,
+        choices=(
+            ("regular", "Regular"),
+            ("moderator", "Moderator"),
+            ("admin", "Admin"),
+        ),
+        default="regular",
+    )
+
+    
     def __str__(self):
         return self.first_name + " " + self.last_name
     

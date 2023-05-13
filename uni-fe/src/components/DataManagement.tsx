@@ -9,10 +9,11 @@ export const DataManagement = () => {
     async function runScript(table: string, type: string) {
         try {
             const token = localStorage.getItem("token");
+            console.log(token);
             if (!token) {
                 return;
             }
-            await axios.post(`${API_URL}/database/${table}/${type}/`, {
+            await axios.post(`${API_URL}/database/${table}/${type}/`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }

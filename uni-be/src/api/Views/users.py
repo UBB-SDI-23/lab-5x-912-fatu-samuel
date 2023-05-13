@@ -12,7 +12,7 @@ from api.pagination.DefaultPagination import DefaultPagination
 from api.permissions import IsAdminOrReadOnly
 
 class UserList(generics.ListAPIView):
-    queryset = UserProfile.objects.all()
+    queryset = UserProfile.objects.all().order_by('id')
     serializer_class = UsernameAndRoleSerializer
     pagination_class = DefaultPagination
 
@@ -23,6 +23,7 @@ class UserDetailsView(generics.RetrieveAPIView):
         course_count=Count("user__course", distinct=True),
         teacher_count=Count("user__teacher", distinct=True),
     )
+
     serializer_class = UserDetailSerializer
     lookup_field = "id"
     

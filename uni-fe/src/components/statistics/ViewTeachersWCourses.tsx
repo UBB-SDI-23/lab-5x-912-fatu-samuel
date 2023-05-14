@@ -26,7 +26,7 @@ export const ViewTeachersWCourses = () => {
     const [isLastPage, setIsLastPage] = useState(false)
     const [totalRows, setTotalRows] = useState(0)
 
-    const rowsPerPage = 10;
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     useEffect(() => {
         setLoading(true);

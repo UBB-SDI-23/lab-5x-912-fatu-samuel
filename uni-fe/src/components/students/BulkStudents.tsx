@@ -32,7 +32,7 @@ export const StudentsBulk = () => {
     const [totalRows, setTotalRows] = useState(0);
     const [selectedRows, setSelectedRows] = useState<number[]>([]);
 
-    const rowsPerPage = 10;
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     useEffect(() => {
         setLoading(true);
@@ -40,6 +40,7 @@ export const StudentsBulk = () => {
         const stringUser = localStorage.getItem("user");
         const user = JSON.parse(stringUser!);
         const new_page_size = user?.page_size || 10;
+        setRowsPerPage(new_page_size);
 
         fetch(`${API_URL}/students/?page=${page}&page_size=${new_page_size}`)
             .then(res => res.json())
@@ -92,6 +93,7 @@ export const StudentsBulk = () => {
                 const stringUser = localStorage.getItem("user");
                 const user = JSON.parse(stringUser!);
                 const new_page_size = user?.page_size || 10;
+        setRowsPerPage(new_page_size);
 
                 fetch(`${API_URL}/students/?page=${page}&page_size=${new_page_size}`)
                     .then(res => res.json())

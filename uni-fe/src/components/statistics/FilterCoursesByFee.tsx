@@ -29,7 +29,7 @@ export const FilterCoursesByFee = () => {
     const [totalRows, setTotalRows] = useState(0)
     const [fee, setFee] = useState(0)
 
-    const rowsPerPage = 10;
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     useEffect(() => {
         setLoading(true);

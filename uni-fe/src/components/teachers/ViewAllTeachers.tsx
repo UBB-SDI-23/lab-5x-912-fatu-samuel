@@ -28,7 +28,7 @@ const ViewAllTeachers = () => {
     const [isLastPage, setIsLastPage] = useState(false)
     const [totalRows, setTotalRows] = useState(0)
 
-    const rowsPerPage = 10;
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     useEffect(() => {
         setLoading(true);
@@ -36,6 +36,7 @@ const ViewAllTeachers = () => {
         const stringUser = localStorage.getItem("user");
         const user = JSON.parse(stringUser!);
         const new_page_size = user?.page_size || 10;
+        setRowsPerPage(new_page_size);
 
         fetch(`${API_URL}/teachers/?page=${page}&page_size=${new_page_size}`)
             .then(res => res.json())

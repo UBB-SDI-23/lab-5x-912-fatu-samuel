@@ -27,7 +27,7 @@ const ViewStudentsAvgFee = () => {
     const [totalRows, setTotalRows] = useState(0)
     const [count, setCount] = useState(0)
 
-    const rowsPerPage = 10;
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     useEffect(() => {
         setLoading(true);

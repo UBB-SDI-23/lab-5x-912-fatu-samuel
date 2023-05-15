@@ -11,7 +11,11 @@ export const DeleteEnroll = () => {
 
     const handleDelete = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
-        await axios.delete(`${API_URL}/enroll/${enrollId}/`);
+        await axios.delete(`${API_URL}/enroll/${enrollId}/`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
         navigate("/enrollments");
     };
 

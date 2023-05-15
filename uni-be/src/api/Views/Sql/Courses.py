@@ -9,4 +9,4 @@ class CoursesSqlView(GenericSqlView):
 
 class TruncateCoursesSqlView(GenericSqlView):
     def __init__(self):
-        super().__init__("api/SqlScripts/courses.sql")
+        super().__init__("api/SqlScripts/truncate_courses.sql")

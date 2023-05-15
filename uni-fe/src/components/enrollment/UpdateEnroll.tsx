@@ -51,6 +51,10 @@ export const UpdateEnroll = () => {
                 "final_exam_score": enroll.final_exam_score,
                 "student": enroll.student.id,
                 "course": enroll.course.id
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
             });
             navigate('/enrollments');
         }

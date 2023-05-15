@@ -13,7 +13,11 @@ export const DeleteTeacher = () => {
     const handleDelete = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
         try {
-            await axios.delete(`${API_URL}/teachers/${teacherId}/`);
+            await axios.delete(`${API_URL}/teachers/${teacherId}/`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
         } catch (error: any) {
             console.log(error.response.status);
             if (error.response.status === 401 || error.response.status === 403) {

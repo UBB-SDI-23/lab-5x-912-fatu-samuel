@@ -74,6 +74,10 @@ export const UpdateCourse = () => {
                 "fee": course.fee,
                 "size": course.size,
                 "teacher": course.teacher.id
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
             });
             navigate('/courses');
         }

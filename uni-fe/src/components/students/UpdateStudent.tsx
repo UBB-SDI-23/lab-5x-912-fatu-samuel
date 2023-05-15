@@ -59,7 +59,11 @@ export const UpdateStudent = () => {
         }
 
         try {
-            await axios.put(`${API_URL}/students/${studentId}/`, student);
+            await axios.put(`${API_URL}/students/${studentId}/`, student, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
             navigate('/students');
         }
         catch (error: any) {

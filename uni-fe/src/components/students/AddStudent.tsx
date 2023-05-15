@@ -45,7 +45,11 @@ const AddStudent = () => {
         }
 
         try {
-            await axios.post(`${API_URL}/students/`, student);
+            await axios.post(`${API_URL}/students/`, student, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
             navigate('/students');
         }
         catch (error: any) {

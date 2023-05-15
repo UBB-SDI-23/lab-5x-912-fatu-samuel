@@ -51,7 +51,11 @@ export const AddEnroll = () => {
         event.preventDefault();
 
         try {
-            await axios.post(`${API_URL}/enroll/`, enrollData);
+            await axios.post(`${API_URL}/enroll/`, enrollData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
             navigate('/enrollments');
         }
         catch (error: any) {
